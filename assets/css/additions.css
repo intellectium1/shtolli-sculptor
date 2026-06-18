@@ -1068,17 +1068,6 @@
 .article-split--reverse { grid-template-columns: 1fr 1.618fr; }
 .article-split__media img { max-height: 520px; }
 
-/* Drop cap — editorial signature opening the lead paragraph */
-.article-lead .dropcap {
-  float: left;
-  font-family: var(--font-serif);
-  font-size: 3.1em;
-  line-height: 0.72;
-  font-weight: 600;
-  color: var(--c-bronze);
-  margin: 0.06em 0.14em 0 0;
-}
-
 /* Pull-quote: breaks a touch wider than prose, serif voice, bronze mark */
 .article-body > blockquote {
   max-width: min(var(--canvas), calc(var(--measure) + 9rem));
@@ -1111,7 +1100,6 @@
   .article-split--reverse { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .article-lead .dropcap { font-size: 2.7em; }
   .article-body > blockquote { padding-left: 2.9rem; }
   .article-body > blockquote::before { font-size: 3.25rem; }
 }
