@@ -486,3 +486,99 @@
   .hero::before,
   .hero::after { display: none; }
 }
+
+/* ============================================================
+   ABOUT POINTS — client-friendly facts (replaces numeric stats)
+   ============================================================ */
+.about-points {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: clamp(2rem, 3vw, 2.5rem);
+  list-style: none;
+  padding: 0;
+}
+.about-point { display: flex; align-items: flex-start; gap: 1rem; }
+.about-point__ic {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--c-bronze-glow);
+  color: var(--c-bronze-ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.about-point__ic svg {
+  width: 24px; height: 24px;
+  stroke: currentColor; stroke-width: 1.6; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.about-point__txt { font-size: 0.95rem; line-height: 1.5; color: var(--c-muted); }
+.about-point__title {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   MOBILE REFINEMENTS — detailed touch & readability tuning
+   ============================================================ */
+@media (max-width: 640px) {
+  :root { --space-section: clamp(3rem, 8vw, 4.25rem); }   /* calmer vertical rhythm */
+
+  /* Hero — center media, drop scroll-hint clutter */
+  .hero__grid { gap: 1.5rem; }
+  .hero__media { width: 100%; max-width: 430px; margin-inline: auto; }
+  .hero__scroll { display: none; }
+
+  /* Trust strip reads better as a 2×2 grid than one tall column */
+  .trust-strip__grid { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; }
+  .trust-item__value { font-size: 1.45rem; }
+  .trust-item__label { font-size: 0.72rem; }
+
+  /* Section heads + intros */
+  .section__head { gap: 0.75rem; }
+  .section__intro { max-width: none; }
+
+  /* Instagram — center the phone, breathing room */
+  .insta-section__layout { gap: 2rem; }
+  .phone-frame { width: 248px; }
+
+  /* Testimonials */
+  .testimonial-card { padding: 1.25rem; }
+
+  /* Forms — comfortable touch targets */
+  .form__input { min-height: 48px; }
+  .form__textarea { min-height: 96px; }
+
+  /* Quiz */
+  .quiz-card { padding: 1.25rem; }
+  .quiz-option { padding: 1rem; }
+
+  /* Slider controls */
+  .projects-slider__controls { margin-top: 1.5rem; }
+
+  /* Service pages */
+  .service-hero { gap: 1.5rem; }
+  .service-gallery__grid { gap: 0.625rem; }
+}
+
+@media (max-width: 420px) {
+  /* Top bar — keep brand + CTA from crowding */
+  .nav__brand { font-size: 1.12rem; letter-spacing: 0.1em; }
+  .nav__cta { font-size: 0.72rem; padding: 0 0.7rem; height: 36px; }
+
+  .hero__lead { font-size: 1rem; }
+
+  /* bottom-nav: fit all 6 labels comfortably */
+  .bottom-nav__item { font-size: 0.55rem; gap: 2px; }
+  .bottom-nav__item svg { width: 20px; height: 20px; }
+
+  .about-point__ic { width: 44px; height: 44px; }
+  .about-point__title { font-size: 1rem; }
+
+  /* Floating CTA never overlaps content edge */
+  .float-cta { right: 10px; }
+}
