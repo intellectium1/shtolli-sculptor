@@ -1008,3 +1008,110 @@
 
 /* When services section appears as a block on service page */
 .service-page .section { padding-block: clamp(3rem, 5vw, 5rem); }
+
+/* ============================================================
+   ARTICLE — GOLDEN-RATIO LAYOUT (φ ≈ 1.618)
+   One centered editorial canvas. Prose lives in the golden
+   "measure"; media breaks to the wider "canvas" (= measure × φ).
+   Vertical rhythm, splits and emphasis all keyed to φ.
+   ============================================================ */
+.article-page {
+  --measure: 39rem;                 /* comfortable reading column   */
+  --canvas:  63rem;                 /* media width ≈ measure × 1.618 */
+  --flow:    clamp(1.6rem, 1rem + 2.6vw, 2.75rem);
+}
+
+/* Text (breadcrumb, header, prose) shares the measure axis; media breaks
+   wider to the canvas — both centered, so every left edge lines up. */
+.article-page .article-breadcrumb,
+.article-page .article-header {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+.article-page .article-hero-img,
+.article-page .article-body {
+  max-width: var(--canvas);
+  margin-inline: auto;
+}
+
+/* Hero: calmer than a wide banner, not as heavy as a square */
+.article-page .article-hero-img { aspect-ratio: 16 / 8; }
+
+/* Prose centered in the golden measure; media keeps the full canvas */
+.article-body { max-width: var(--canvas); }
+.article-body > p,
+.article-body > h2,
+.article-body > h3,
+.article-body > ul,
+.article-body > ol,
+.article-body > .article-lead {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+/* Closing CTA spans the full canvas for a confident finish */
+.article-body > .article-cta { max-width: var(--canvas); margin-inline: auto; }
+
+/* Rhythm: space-before : space-after of a heading ≈ φ */
+.article-body h2 { margin-top: var(--flow); margin-bottom: calc(var(--flow) / 1.618); }
+.article-body h3 { margin-top: calc(var(--flow) / 1.618); }
+.article-body > .article-lead { margin-bottom: var(--flow); }
+
+/* Media blocks breathe with the same golden vertical gap */
+.article-figure,
+.article-split,
+.article-duo,
+.article-steps,
+.article-highlight { margin-block: var(--flow); }
+
+/* Golden split: the image is the major (φ) part, text the minor */
+.article-split          { grid-template-columns: 1.618fr 1fr; align-items: center; }
+.article-split--reverse { grid-template-columns: 1fr 1.618fr; }
+.article-split__media img { max-height: 520px; }
+
+/* Drop cap — editorial signature opening the lead paragraph */
+.article-lead .dropcap {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 3.1em;
+  line-height: 0.72;
+  font-weight: 600;
+  color: var(--c-bronze);
+  margin: 0.06em 0.14em 0 0;
+}
+
+/* Pull-quote: breaks a touch wider than prose, serif voice, bronze mark */
+.article-body > blockquote {
+  max-width: min(var(--canvas), calc(var(--measure) + 9rem));
+  margin-inline: auto;
+  margin-block: var(--flow);
+  position: relative;
+  padding: 0.25rem 0 0.25rem 4.5rem;
+  border-left: none;
+  background: transparent;
+  border-radius: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.6rem);
+  line-height: 1.45;
+  color: var(--c-ink);
+}
+.article-body > blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: 0;
+  top: -0.12em;
+  font-family: var(--font-serif);
+  font-size: 4.75rem;
+  line-height: 1;
+  color: var(--c-bronze-light);
+}
+
+/* Mobile: collapse golden columns and tame the editorial flourishes */
+@media (max-width: 760px) {
+  .article-split,
+  .article-split--reverse { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .article-lead .dropcap { font-size: 2.7em; }
+  .article-body > blockquote { padding-left: 2.9rem; }
+  .article-body > blockquote::before { font-size: 3.25rem; }
+}
