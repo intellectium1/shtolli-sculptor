@@ -105,16 +105,17 @@
 
   function cardHtml(lead, archivedView) {
     var idx = stageIndex(lead.stage);
+    var sid = esc(lead.id);
     var moves;
     if (archivedView) {
-      moves = '<button class="card__move" data-act="restore" data-id="' + lead.id + '" title="Вернуть в работу">↩</button>';
+      moves = '<button class="card__move" data-act="restore" data-id="' + sid + '" title="Вернуть в работу">↩</button>';
     } else {
       moves =
-        '<button class="card__move" data-act="prev" data-id="' + lead.id + '" title="Предыдущий этап"' + (idx <= 0 ? ' disabled' : '') + '>◀</button>' +
-        '<button class="card__move" data-act="next" data-id="' + lead.id + '" title="Следующий этап"' + (idx >= L.STAGES.length - 1 ? ' disabled' : '') + '>▶</button>';
+        '<button class="card__move" data-act="prev" data-id="' + sid + '" title="Предыдущий этап"' + (idx <= 0 ? ' disabled' : '') + '>◀</button>' +
+        '<button class="card__move" data-act="next" data-id="' + sid + '" title="Следующий этап"' + (idx >= L.STAGES.length - 1 ? ' disabled' : '') + '>▶</button>';
     }
     return '' +
-      '<article class="card" data-id="' + lead.id + '" draggable="true" tabindex="0" ' +
+      '<article class="card" data-id="' + sid + '" draggable="true" tabindex="0" ' +
       'style="--accent:' + (STAGE_ACCENT[archivedView ? 'archived' : lead.stage] || 'var(--c-bronze)') + '">' +
         '<div class="card__top">' +
           '<span class="card__name">' + esc(lead.name || 'Без имени') + '</span>' +

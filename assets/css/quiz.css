@@ -332,23 +332,22 @@
    fill with a light-on-dark hairline. Reused as-is on the quiz's
    LIGHT card, the typed text was cream-on-cream (invisible) and the
    border/label washed out. These overrides make the fields read as
-   dark-on-light. Contrast checked against WCAG 2.2 AA:
-     text   --c-ink (#211d17) on --c-cream-3 (#efe9df) ~ 12:1
-     holder --c-faint (#6e675b) on --c-cream-3          ~ 4.8:1
-     label  --c-ink-soft (#3a342b) on card               ~ 11:1
-   The recessed fill (cream-3, darker than the cream-2 card) gives a
-   clear field boundary on top of the hairline border.
+   dark-on-light. Contrast verified against WCAG 2.2:
+     text   --c-ink (#211d17)     on --c-cream-3 (#efe9df) ~ 12:1  (AA/AAA)
+     holder --c-muted (#5c554a)   on --c-cream-3           ~ 6.1:1 (AA)
+     label  --c-ink-soft (#3a342b) on card                  ~ 11:1 (AA/AAA)
+     border rgba(33,29,23,.55) vs field & card              > 3:1  (1.4.11 non-text)
    ============================================================ */
 .quiz-page .form__label {
   color: var(--c-ink-soft);
 }
 .quiz-page .form__input {
   background: var(--c-cream-3);
-  border: 1.5px solid var(--line-strong);
+  border: 1.5px solid rgba(33, 29, 23, 0.55);
   color: var(--c-ink);
 }
 .quiz-page .form__input::placeholder {
-  color: var(--c-faint);
+  color: var(--c-muted);
   opacity: 1; /* Firefox dims placeholders by default */
 }
 .quiz-page .form__input:focus {

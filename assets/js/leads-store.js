@@ -146,6 +146,11 @@
 
   function move(id, stage) {
     if (stage !== ARCHIVED && !STAGE_LABELS[stage]) return false;
+    var cur = get(id);
+    if (!cur) return false;
+    // no-op guard: already in the target state -> don't spam history/writes
+    if (stage === ARCHIVED && cur.archived) return false;
+    if (stage !== ARCHIVED && !cur.archived && cur.stage === stage) return false;
     return mutate(id, function (l) {
       if (stage === ARCHIVED) { l.archived = true; }
       else { l.archived = false; l.stage = stage; }
@@ -156,6 +161,8 @@
 
   function archive(id) { return move(id, ARCHIVED); }
   function restore(id) {
+    var cur = get(id);
+    if (!cur || !cur.archived) return false;
     return mutate(id, function (l) {
       l.archived = false;
       l.history = l.history || [];
@@ -174,11 +181,18 @@
 
   function update(id, patch) {
     patch = patch || {};
+    // stage / archived are state transitions — route them through the
+    // history-tracking codepaths so the audit log can't be silently bypassed.
+    if (Object.prototype.hasOwnProperty.call(patch, 'stage')) move(id, patch.stage);
+    if (Object.prototype.hasOwnProperty.call(patch, 'archived')) {
+      if (patch.archived) archive(id); else restore(id);
+    }
+    var rest = Object.keys(patch).filter(function (k) {
+      return k !== 'id' && k !== 'createdAt' && k !== 'stage' && k !== 'archived';
+    });
+    if (!rest.length) return true;
     return mutate(id, function (l) {
-      Object.keys(patch).forEach(function (k) {
-        if (k === 'id' || k === 'createdAt') return;
-        l[k] = patch[k];
-      });
+      rest.forEach(function (k) { l[k] = patch[k]; });
     });
   }
 

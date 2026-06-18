@@ -85,7 +85,7 @@ h1, h2, h3, p, dl, dd, figure { margin: 0; }
 .kicker--light { color: var(--c-bronze-light); }
 
 .accent-italic {
-  font-style: italic;
+  font-style: normal;
   color: var(--c-bronze);
 }
 

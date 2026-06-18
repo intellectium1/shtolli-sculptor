@@ -178,16 +178,19 @@
     if (mail) mail.href = 'mailto:' + MAIL_TO + '?subject=' +
                           encodeURIComponent('Заявка с сайта ШТОЛЛИ') + '&body=' + enc;
 
+    // onclick (property) is idempotent — re-running showResult() after a
+    // restart+resubmit must not stack duplicate listeners. The TG anchor
+    // opens t.me natively via its href; here we only copy the lead text.
     var tg = document.getElementById('quiz-tg');
-    if (tg) tg.addEventListener('click', function () { copyText(text); });
+    if (tg) tg.onclick = function () { copyText(text); };
 
     var copy = document.getElementById('quiz-copy');
-    if (copy) copy.addEventListener('click', function () {
+    if (copy) copy.onclick = function () {
       copyText(text);
       var orig = copy.getAttribute('data-label') || copy.textContent;
       copy.textContent = 'Скопировано ✓';
       window.setTimeout(function () { copy.textContent = orig; }, 1800);
-    });
+    };
 
     cardEl.hidden = true;
     resultEl.hidden = false;

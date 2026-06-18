@@ -455,7 +455,7 @@
   font-size: 0.85rem;
   line-height: 1.5;
   color: var(--c-faint);
-  font-style: italic;
+  font-style: normal;
   max-width: 60ch;
 }
 .article-figure figcaption::before {
@@ -534,7 +534,7 @@
   margin-top: 0.625rem;
   font-size: 0.8rem;
   color: var(--c-faint);
-  font-style: italic;
+  font-style: normal;
   text-align: center;
 }
 .article-duo--trio { grid-template-columns: repeat(3, 1fr); }
@@ -785,7 +785,7 @@
   border-left: 3px solid var(--c-bronze);
   background: var(--c-cream-2);
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  font-style: italic;
+  font-style: normal;
   color: var(--c-ink-soft);
   font-size: 1.04rem;
   line-height: 1.65;

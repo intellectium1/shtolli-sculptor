@@ -306,9 +306,12 @@
   flex: none;
 }
 .marquee__item {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.2rem;
+  font-family: var(--font-sans);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  font-size: 0.92rem;
   color: var(--c-muted);
   white-space: nowrap;
 }
@@ -552,9 +555,12 @@ html.no-js .marquee__track { animation: marqueeSlide 32s linear infinite; }
 .cta__ring--2 { right: 30px; bottom: -90px; width: 220px; height: 220px; border-color: rgba(205,180,148,0.14); }
 .cta__copy { position: relative; max-width: 35rem; }
 .cta__eyebrow {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.25rem;
+  font-family: var(--font-sans);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: 0.8rem;
   color: var(--c-bronze-light);
   margin-bottom: 1.125rem;
 }

@@ -229,7 +229,7 @@
   font-size: 1.02rem;
   line-height: 1.65;
   color: var(--c-on-dark-soft);
-  font-style: italic;
+  font-style: normal;
   margin-bottom: 1.5rem;
 }
 .testimonial-card__author {
@@ -397,18 +397,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-/* ---------- Section heading: animated bronze underline mark ---------- */
-.h2 .accent-italic::after {
-  content: '';
-  display: inline-block;
-  width: 0.4em;
-  height: 0.04em;
-  background: var(--c-bronze);
-  vertical-align: middle;
-  margin-left: 0.25em;
-  transform: translateY(-0.1em);
 }
 
 /* ---------- Mobile sticky CTA bar (after scroll) ---------- */
