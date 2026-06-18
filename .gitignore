@@ -1,0 +1,21 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# Image-slot runtime sidecar (design-macro scaffold)
+.image-slots.state.json
+.thumbnail
+
+# Python
+__pycache__/
+*.pyc
+_convert_ig.py
+
+# Node (not used, but safe)
+node_modules/
+
+# Local env / secrets — never commit
+.env
+.env.*

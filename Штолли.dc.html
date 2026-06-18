@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f6f2ec;color:#211d17;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#93673a;color:#f6f2ec}
+a{color:inherit;text-decoration:none}
+image-slot{display:block}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div ref="{{ rootRef }}" style="position:relative;overflow-x:hidden">
+
+  <!-- ============ NAV ============ -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:100;height:74px;display:flex;align-items:center">
+    <div id="nav-bg" style="position:absolute;inset:0;background:rgba(246,242,236,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(33,29,23,0.10);opacity:0;transition:opacity .5s ease"></div>
+    <div style="position:relative;width:100%;max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between">
+      <a href="#top" style="font-family:'Playfair Display',serif;font-size:23px;font-weight:600;letter-spacing:.18em;color:#211d17">ШТОЛЛИ</a>
+      <div style="display:flex;align-items:center;gap:38px">
+        <a href="#about" style="font-size:14px;font-weight:500;letter-spacing:.02em;color:#3a342b;transition:color .3s" style-hover="color:#93673a">О нас</a>
+        <a href="#services" style="font-size:14px;font-weight:500;letter-spacing:.02em;color:#3a342b;transition:color .3s" style-hover="color:#93673a">Услуги</a>
+        <a href="#gallery" style="font-size:14px;font-weight:500;letter-spacing:.02em;color:#3a342b;transition:color .3s" style-hover="color:#93673a">Галерея</a>
+        <a href="#contacts" style="font-size:14px;font-weight:500;letter-spacing:.02em;color:#3a342b;transition:color .3s" style-hover="color:#93673a">Контакты</a>
+        <a href="https://t.me/shtoll" target="_blank" style="display:inline-flex;align-items:center;height:40px;padding:0 20px;background:#211d17;color:#f6f2ec;font-size:13px;font-weight:600;letter-spacing:.04em;border-radius:2px;transition:background .35s" style-hover="background:#93673a">Связаться</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" style="position:relative;padding:150px 0 90px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;align-items:center;gap:56px">
+      <div style="flex:1 1 440px;min-width:300px">
+        <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.16,.84,.34,1),transform .9s cubic-bezier(.16,.84,.34,1);display:flex;align-items:center;gap:14px;margin-bottom:30px">
+          <span style="width:34px;height:1px;background:#93673a"></span>
+          <span style="font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#93673a;font-weight:600">Сочи · Художественное литьё</span>
+        </div>
+        <h1 data-reveal data-reveal-delay="90" style="opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1);margin:0;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,6.2vw,90px);line-height:1.02;letter-spacing:-.01em">Скульптура<br>и&nbsp;художественное<br><span style="font-style:italic;color:#93673a">литьё</span></h1>
+        <p data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(28px);transition:opacity 1.05s cubic-bezier(.16,.84,.34,1),transform 1.05s cubic-bezier(.16,.84,.34,1);margin:34px 0 0;max-width:480px;font-size:18px;line-height:1.65;color:#5c554a;font-weight:400">Бюсты, барельефы, таблички и сувенирная продукция из бронзы, латуни, бетона и гипса — по вашему эскизу или нашему. Древнее ремесло в&nbsp;современном прочтении.</p>
+        <div data-reveal data-reveal-delay="320" style="opacity:0;transform:translateY(28px);transition:opacity 1.1s cubic-bezier(.16,.84,.34,1),transform 1.1s cubic-bezier(.16,.84,.34,1);display:flex;flex-wrap:wrap;gap:16px;margin-top:42px">
+          <a href="#gallery" style="display:inline-flex;align-items:center;height:54px;padding:0 30px;background:#93673a;color:#f6f2ec;font-size:14.5px;font-weight:600;letter-spacing:.03em;border-radius:2px;transition:background .35s,transform .35s" style-hover="background:#6e4d2b;transform:translateY(-2px)">Смотреть работы</a>
+          <a href="#services" style="display:inline-flex;align-items:center;height:54px;padding:0 30px;border:1px solid rgba(33,29,23,0.28);color:#211d17;font-size:14.5px;font-weight:600;letter-spacing:.03em;border-radius:2px;transition:border-color .35s,background .35s" style-hover="border-color:#93673a;background:rgba(147,103,58,0.06)">Услуги и цены</a>
+        </div>
+      </div>
+      <div style="flex:1 1 460px;min-width:300px;position:relative">
+        <div data-parallax="0.14" style="position:relative">
+          <div data-reveal style="opacity:0;transform:translateY(40px);transition:opacity 1.2s cubic-bezier(.16,.84,.34,1),transform 1.2s cubic-bezier(.16,.84,.34,1);overflow:hidden;border-radius:3px;box-shadow:0 30px 70px -28px rgba(40,28,14,0.45);aspect-ratio:4/5;background:#e7e0d3">
+            <image-slot id="hero-main" shape="rect" fit="cover" placeholder="Главное фото — скульптура" style="width:100%;height:100%"></image-slot>
+          </div>
+        </div>
+        <div data-parallax="-0.08" style="position:absolute;left:-44px;bottom:-30px;width:46%;z-index:2">
+          <div data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(40px);transition:opacity 1.2s cubic-bezier(.16,.84,.34,1),transform 1.2s cubic-bezier(.16,.84,.34,1);overflow:hidden;border-radius:3px;box-shadow:0 24px 50px -24px rgba(40,28,14,0.5);border:6px solid #f6f2ec;aspect-ratio:1/1;background:#ded6c7">
+            <image-slot id="hero-detail" shape="rect" fit="cover" placeholder="Деталь / процесс" style="width:100%;height:100%"></image-slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE STRIP ============ -->
+  <div data-reveal style="opacity:0;transition:opacity 1s ease;border-top:1px solid rgba(33,29,23,0.10);border-bottom:1px solid rgba(33,29,23,0.10);overflow:hidden;margin-top:30px">
+    <div style="max-width:1240px;margin:0 auto;padding:22px 32px;display:flex;flex-wrap:wrap;gap:14px 44px;align-items:center;justify-content:space-between">
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5c554a">Бронза</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#93673a"></span>
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5c554a">Латунь</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#93673a"></span>
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5c554a">Мельхиор</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#93673a"></span>
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5c554a">Мрамор</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#93673a"></span>
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5c554a">Бетон</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#93673a"></span>
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5c554a">Гипс</span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" style="scroll-margin-top:90px;padding:120px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start">
+      <div style="flex:1 1 420px;min-width:300px">
+        <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#93673a;font-weight:600;margin-bottom:26px">О мастерской</div>
+        <h2 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1);margin:0;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.12;letter-spacing:-.01em">Даже в древнем ремесле можно идти в&nbsp;ногу со&nbsp;временем</h2>
+        <p data-reveal data-reveal-delay="180" style="opacity:0;transform:translateY(26px);transition:opacity 1.05s ease,transform 1.05s ease;margin:30px 0 0;font-size:17px;line-height:1.72;color:#5c554a">Штолли — мастерская скульптуры и художественного литья в&nbsp;Сочи. Мы изготавливаем скульптуры, бюсты, таблички, барельефы и&nbsp;сувенирную продукцию из&nbsp;бронзы, латуни, пластика, бетона и&nbsp;гипса.</p>
+        <p data-reveal data-reveal-delay="260" style="opacity:0;transform:translateY(26px);transition:opacity 1.1s ease,transform 1.1s ease;margin:20px 0 0;font-size:17px;line-height:1.72;color:#5c554a">Выполним любое изделие по&nbsp;вашему эскизу — или разработаем эскиз сами. Основная концепция нашей работы — современный подход: компьютерные технологии, 3D-моделирование и&nbsp;креатив на&nbsp;службе классического литья.</p>
+        <div data-reveal data-reveal-delay="340" style="opacity:0;transform:translateY(26px);transition:opacity 1.15s ease,transform 1.15s ease;display:flex;gap:48px;margin-top:48px">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:500;color:#93673a;line-height:1">2,5<span style="font-size:22px"> м</span></div>
+            <div style="font-size:13.5px;color:#837b6e;margin-top:8px;max-width:140px">высота крупнейших работ</div>
+          </div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:500;color:#93673a;line-height:1">6</div>
+            <div style="font-size:13.5px;color:#837b6e;margin-top:8px;max-width:140px">материалов в&nbsp;работе</div>
+          </div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:500;color:#93673a;line-height:1">∞</div>
+            <div style="font-size:13.5px;color:#837b6e;margin-top:8px;max-width:140px">по&nbsp;вашему эскизу</div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1 1 380px;min-width:280px">
+        <div data-parallax="0.1">
+          <div data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(40px);transition:opacity 1.2s cubic-bezier(.16,.84,.34,1),transform 1.2s cubic-bezier(.16,.84,.34,1);overflow:hidden;border-radius:3px;box-shadow:0 30px 64px -30px rgba(40,28,14,0.45);aspect-ratio:3/4;background:#e7e0d3">
+            <image-slot id="about-photo" shape="rect" fit="cover" placeholder="Мастер за работой" style="width:100%;height:100%"></image-slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" style="scroll-margin-top:90px;padding:30px 0 120px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px">
+        <div>
+          <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#93673a;font-weight:600;margin-bottom:22px">Услуги</div>
+          <h2 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1);margin:0;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.01em">Что мы&nbsp;делаем</h2>
+        </div>
+        <p data-reveal data-reveal-delay="140" style="opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease;margin:0;max-width:330px;font-size:15.5px;line-height:1.6;color:#837b6e">От&nbsp;единичной скульптуры до&nbsp;серийной фурнитуры — полный цикл от&nbsp;эскиза до&nbsp;готовой отливки.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+        <sc-for list="{{ services }}" as="srv" hint-placeholder-count="3">
+          <a href="{{ srv.href }}" target="_blank" data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1),border-color .4s,box-shadow .4s;display:flex;flex-direction:column;min-height:340px;padding:38px 34px;background:#fbf8f2;border:1px solid rgba(33,29,23,0.10);border-radius:3px" style-hover="border-color:#93673a;box-shadow:0 24px 50px -30px rgba(40,28,14,0.4)">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;color:#cdb494;font-weight:600">{{ srv.num }}</div>
+            <h3 style="margin:22px 0 0;font-family:'Playfair Display',serif;font-weight:500;font-size:26px;line-height:1.18;letter-spacing:-.01em">{{ srv.title }}</h3>
+            <p style="margin:16px 0 0;font-size:15px;line-height:1.62;color:#5c554a;flex:1">{{ srv.desc }}</p>
+            <div style="margin-top:26px;padding-top:22px;border-top:1px solid rgba(33,29,23,0.10);display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:15.5px;font-weight:600;color:#211d17">{{ srv.price }}</span>
+              <span style="font-size:13px;font-weight:600;letter-spacing:.04em;color:#93673a">Подробнее →</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED PROJECTS ============ -->
+  <section style="padding:30px 0 120px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#93673a;font-weight:600;margin-bottom:22px">Избранные проекты</div>
+      <h2 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1);margin:0 0 50px;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.01em">Работы, которыми гордимся</h2>
+      <div style="border-top:1px solid rgba(33,29,23,0.12)">
+        <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="5">
+          <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1),background .4s;display:flex;flex-wrap:wrap;align-items:baseline;gap:20px 36px;padding:30px 16px;border-bottom:1px solid rgba(33,29,23,0.12)" style-hover="background:rgba(147,103,58,0.05)">
+            <span style="font-family:'Playfair Display',serif;font-size:22px;color:#cdb494;font-weight:600;min-width:46px">{{ pr.num }}</span>
+            <h3 style="margin:0;flex:1 1 360px;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(22px,2.4vw,30px);line-height:1.2;letter-spacing:-.01em">{{ pr.title }}</h3>
+            <span style="font-size:14px;color:#837b6e;flex:0 1 240px">{{ pr.meta }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" style="scroll-margin-top:90px;padding:30px 0 110px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:54px">
+        <div>
+          <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#93673a;font-weight:600;margin-bottom:22px">Галерея</div>
+          <h2 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1);margin:0;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.01em">Наши работы</h2>
+        </div>
+        <p data-reveal data-reveal-delay="140" style="opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease;margin:0;max-width:300px;font-size:15px;line-height:1.6;color:#837b6e">Наведите на&nbsp;карточку. Перетащите своё фото в&nbsp;любую ячейку, чтобы заполнить галерею.</p>
+      </div>
+      <div style="columns:4 280px;column-gap:26px">
+        <sc-for list="{{ gallery }}" as="item" hint-placeholder-count="9">
+          <figure data-reveal style="opacity:0;transform:translateY(30px);transition:opacity .95s cubic-bezier(.16,.84,.34,1),transform .95s cubic-bezier(.16,.84,.34,1);break-inside:avoid;margin:0 0 26px;display:block">
+            <div style="position:relative;overflow:hidden;border-radius:3px;background:#e7e0d3;aspect-ratio:{{ item.ar }};box-shadow:0 16px 36px -28px rgba(40,28,14,0.5)">
+              <div style="position:absolute;inset:0;transition:transform 1.3s cubic-bezier(.16,.84,.34,1)" style-hover="transform:scale(1.06)">
+                <image-slot id="{{ item.id }}" shape="rect" fit="cover" placeholder="{{ item.title }}" style="width:100%;height:100%"></image-slot>
+              </div>
+            </div>
+            <figcaption style="margin-top:14px">
+              <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:500;line-height:1.25">{{ item.title }}</div>
+              <div style="font-size:13px;color:#837b6e;margin-top:4px">{{ item.material }}</div>
+            </figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="padding:0 0 110px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px">
+      <div data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1.1s cubic-bezier(.16,.84,.34,1),transform 1.1s cubic-bezier(.16,.84,.34,1);position:relative;overflow:hidden;background:#211d17;border-radius:4px;padding:clamp(48px,7vw,96px) clamp(32px,6vw,84px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:36px">
+        <div data-parallax="0.05" style="position:absolute;right:-60px;top:-60px;width:320px;height:320px;border:1px solid rgba(205,180,148,0.22);border-radius:50%"></div>
+        <div data-parallax="0.09" style="position:absolute;right:30px;bottom:-90px;width:220px;height:220px;border:1px solid rgba(205,180,148,0.16);border-radius:50%"></div>
+        <div style="position:relative;max-width:560px">
+          <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:#cdb494;margin-bottom:18px">Хочешь скульптуру?</div>
+          <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:500;color:#f6f2ec;font-size:clamp(32px,4.4vw,58px);line-height:1.06;letter-spacing:-.01em">Расскажите свою идею&nbsp;— остальное сделаем мы</h2>
+        </div>
+        <a href="https://t.me/shtoll" target="_blank" style="position:relative;display:inline-flex;align-items:center;height:58px;padding:0 34px;background:#93673a;color:#f6f2ec;font-size:15px;font-weight:600;letter-spacing:.03em;border-radius:2px;transition:background .35s,transform .35s;white-space:nowrap" style-hover="background:#cdb494;transform:translateY(-2px)">Связаться с нами →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTS / FOOTER ============ -->
+  <footer id="contacts" style="scroll-margin-top:90px;background:#211d17;color:#e9e3d8">
+    <div style="max-width:1240px;margin:0 auto;padding:90px 32px 40px;display:flex;flex-wrap:wrap;gap:56px;justify-content:space-between">
+      <div style="flex:1 1 360px;min-width:280px">
+        <div data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#cdb494;font-weight:600;margin-bottom:24px">Контакты</div>
+        <h2 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1);margin:0 0 40px;font-family:'Playfair Display',serif;font-weight:500;color:#f6f2ec;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.01em">Свяжитесь<br>с&nbsp;мастерской</h2>
+        <div data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1s ease;display:flex;flex-direction:column;gap:22px">
+          <a href="tel:+79384499311" style="display:flex;flex-direction:column;gap:4px" style-hover="opacity:.8">
+            <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9a9183">Телефон</span>
+            <span style="font-family:'Playfair Display',serif;font-size:26px;color:#f6f2ec">+7 938 44 99 311</span>
+          </a>
+          <a href="mailto:shtolik@list.ru" style="display:flex;flex-direction:column;gap:4px" style-hover="opacity:.8">
+            <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9a9183">Почта</span>
+            <span style="font-family:'Playfair Display',serif;font-size:26px;color:#f6f2ec">shtolik@list.ru</span>
+          </a>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9a9183">Адрес</span>
+            <span style="font-family:'Playfair Display',serif;font-size:26px;color:#f6f2ec">Сочи, Первомайская 26а</span>
+          </div>
+        </div>
+        <div data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(20px);transition:opacity 1.05s ease,transform 1.05s ease;display:flex;gap:14px;margin-top:38px">
+          <a href="https://t.me/shtoll" target="_blank" style="display:inline-flex;align-items:center;height:46px;padding:0 22px;border:1px solid rgba(233,227,216,0.28);border-radius:2px;font-size:14px;font-weight:600;transition:background .35s,border-color .35s" style-hover="background:#93673a;border-color:#93673a">Telegram</a>
+          <a href="https://wa.me/79384499311" target="_blank" style="display:inline-flex;align-items:center;height:46px;padding:0 22px;border:1px solid rgba(233,227,216,0.28);border-radius:2px;font-size:14px;font-weight:600;transition:background .35s,border-color .35s" style-hover="background:#93673a;border-color:#93673a">WhatsApp</a>
+        </div>
+      </div>
+      <div data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.16,.84,.34,1),transform 1.1s cubic-bezier(.16,.84,.34,1);flex:1 1 360px;min-width:280px;max-width:440px">
+        <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:16px">
+          <input type="text" placeholder="Ваше имя" style="height:54px;padding:0 18px;background:rgba(246,242,236,0.05);border:1px solid rgba(233,227,216,0.20);border-radius:2px;color:#f6f2ec;font-family:'Manrope',sans-serif;font-size:15px;outline:none;transition:border-color .3s" style-focus="border-color:#93673a">
+          <input type="text" placeholder="Телефон или Telegram" style="height:54px;padding:0 18px;background:rgba(246,242,236,0.05);border:1px solid rgba(233,227,216,0.20);border-radius:2px;color:#f6f2ec;font-family:'Manrope',sans-serif;font-size:15px;outline:none;transition:border-color .3s" style-focus="border-color:#93673a">
+          <textarea placeholder="Опишите идею или пришлите эскиз" rows="4" style="padding:16px 18px;background:rgba(246,242,236,0.05);border:1px solid rgba(233,227,216,0.20);border-radius:2px;color:#f6f2ec;font-family:'Manrope',sans-serif;font-size:15px;outline:none;resize:vertical;transition:border-color .3s" style-focus="border-color:#93673a"></textarea>
+          <button type="submit" style="height:56px;background:#93673a;color:#f6f2ec;border:none;border-radius:2px;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:background .35s" style-hover="background:#cdb494">{{ submitLabel }}</button>
+        </form>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(233,227,216,0.14)">
+      <div style="max-width:1240px;margin:0 auto;padding:26px 32px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+        <span style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.18em;color:#f6f2ec">ШТОЛЛИ</span>
+        <span style="font-size:13px;color:#9a9183">© 2026 Мастерская скульптуры и художественного литья · Сочи</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  state = { submitLabel: 'Отправить сообщение' };
+
+  renderVals() {
+    return {
+      rootRef: this.rootRef,
+      submitLabel: this.state.submitLabel,
+      onSubmit: (e) => {
+        e.preventDefault();
+        this.setState({ submitLabel: 'Спасибо! Мы свяжемся с вами' });
+        setTimeout(() => this.setState({ submitLabel: 'Отправить сообщение' }), 3500);
+      },
+      services: [
+        { num: '01', title: 'Изготовление скульптур', desc: 'Скульптуры, бюсты и барельефы по вашему эскизу или нашему — от идеи и 3D-модели до готовой отливки и патинирования.', price: 'Рассчитывается индивидуально', href: 'http://shtolli.ru/sculpture' },
+        { num: '02', title: 'Художественное литьё', desc: 'Литьё из бронзы, латуни и других металлов: памятные таблички, фурнитура, наградные знаки и сувенирная продукция.', price: 'от 4 000 ₽ за кг', href: 'http://shtolli.ru/lityo' },
+        { num: '03', title: 'Услуги скульптора', desc: 'Лепка, 3D-моделирование и подготовка форм. Современный подход к древнему ремеслу — технологии и креатив.', price: 'По запросу', href: 'http://shtolli.ru/uslugi' },
+      ],
+      projects: [
+        { num: '01', title: 'Перо для памятника «Книга»', meta: 'Бронза · в память А. А. Бестужева' },
+        { num: '02', title: 'Памятные таблички «Новая волна 2021»', meta: 'Международный конкурс, Сочи' },
+        { num: '03', title: 'Весы для Адлерского Центрального рынка', meta: 'Высота 2,5 м' },
+        { num: '04', title: 'Скульптура Николаю Чудотворцу', meta: 'Бронза, патинирование · 1 м' },
+        { num: '05', title: 'Барельеф академика Г. А. Илизарова', meta: 'Медицинский центр, Махачкала' },
+      ],
+      gallery: [
+        { id: 'g-morskoy-konek', title: 'Бронзовый морской конёк', material: 'Бронза, патинирование · 30 см', ar: '0.8' },
+        { id: 'g-nikolay', title: 'Николай Чудотворец', material: 'Бронза, патинирование · 1 м', ar: '0.62' },
+        { id: 'g-bokaly-1', title: 'Бокалы для вина', material: 'Латунь, керамика', ar: '1' },
+        { id: 'g-bokaly-2', title: 'Бокалы для вина №2', material: 'Бронза, керамика', ar: '0.8' },
+        { id: 'g-petr', title: 'Пётр I', material: 'Бронза · 45 см', ar: '0.72' },
+        { id: 'g-ogon-voda', title: 'Огонь-вода', material: 'Бронза, мрамор · 15 см', ar: '1' },
+        { id: 'g-selfi-1', title: 'Селфи', material: 'Латунь, мельхиор, патинирование · 33 см', ar: '0.8' },
+        { id: 'g-selfi-2', title: 'Селфи №2', material: 'Латунь, мельхиор · 33 см', ar: '0.7' },
+        { id: 'g-rybak', title: 'Рыбак', material: 'Бронза, патинирование', ar: '0.82' },
+        { id: 'g-rusalka', title: 'Русалка из Саратова', material: 'Латунь, патинирование · 30 см', ar: '1' },
+        { id: 'g-hulk', title: 'Халк', material: 'Бронза, мрамор · 7 см', ar: '1' },
+        { id: 'g-pero', title: 'Перо, памятник Бестужеву А. А.', material: 'Бронза · 1,5 м', ar: '0.6' },
+        { id: 'g-nagrady', title: 'Наградные знаки', material: 'Бронза', ar: '1.25' },
+        { id: 'g-furnitura', title: 'Фурнитура для кресла', material: 'Бронза', ar: '1' },
+        { id: 'g-process', title: 'Процесс литья бронзы', material: 'Мастерская', ar: '1.3' },
+        { id: 'g-nevsky', title: 'Невский и Волков', material: 'Латунь', ar: '0.82' },
+        { id: 'g-gazprom', title: 'Газпром. Портретное сходство', material: 'Бронза', ar: '0.8' },
+        { id: 'g-byust', title: 'Бюст мужчины', material: 'Латунь, патина', ar: '0.75' },
+        { id: 'g-podstavka', title: 'Подставка для вина', material: 'Бронза, мрамор', ar: '1.1' },
+        { id: 'g-lavochka', title: 'На лавочке. По фото', material: 'Бронза, мрамор', ar: '0.9' },
+        { id: 'g-tamga', title: 'Тамга', material: 'Полированная латунь, холст', ar: '1' },
+        { id: 'g-dzerzhinsky', title: 'Дзержинский', material: 'Гипс', ar: '0.75' },
+      ],
+    };
+  }
+
+  componentDidMount() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let reveals = Array.from(root.querySelectorAll('[data-reveal]'));
+    reveals.forEach((el) => { el.style.willChange = 'opacity, transform'; });
+
+    const revealEl = (el) => {
+      const d = parseFloat(el.dataset.revealDelay || 0);
+      el.style.transitionDelay = d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el._revealed = true;
+    };
+    const revealAll = () => reveals.forEach(revealEl);
+
+    if (reduce) revealAll();
+
+    // Parallax + frosted nav + scroll-driven reveal
+    const navBg = root.querySelector('#nav-bg');
+    const parallax = reduce ? [] : Array.from(root.querySelectorAll('[data-parallax]'));
+    const onScroll = () => {
+      const vh = window.innerHeight;
+      if (!reduce) {
+        const trigger = vh * 0.9;
+        for (let i = reveals.length - 1; i >= 0; i--) {
+          const el = reveals[i];
+          if (el._revealed) continue;
+          if (el.getBoundingClientRect().top < trigger) revealEl(el);
+        }
+      }
+      parallax.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const prog = (center - vh / 2) / vh;
+        const speed = parseFloat(el.dataset.parallax || 0.1);
+        el.style.transform = 'translate3d(0,' + (prog * speed * -130).toFixed(2) + 'px,0)';
+      });
+      if (navBg) navBg.style.opacity = window.scrollY > 50 ? '1' : '0';
+    };
+    let ticking = false;
+    const handler = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => { onScroll(); ticking = false; });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    window.addEventListener('resize', handler);
+    onScroll();
+    this._cleanup = () => {
+      window.removeEventListener('scroll', handler);
+      window.removeEventListener('resize', handler);
+    };
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._cleanup) this._cleanup();
+  }
+}
+</script>
+</body>
+</html>

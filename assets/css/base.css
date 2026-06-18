@@ -1,0 +1,229 @@
+/* ============================================================
+   ШТОЛЛИ — Base: reset, typography, layout primitives,
+   progressive-enhancement reveal states, reduced motion.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Lenis drives smooth scroll in JS; native fallback for no-JS / reduced motion */
+  scroll-behavior: auto;
+}
+html.no-js, html.reduce-motion { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--c-cream);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Lenis recommended setup */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+
+::selection { background: var(--c-bronze); color: var(--c-cream); }
+
+:focus-visible {
+  outline: 2px solid var(--c-bronze);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Layout ---- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { padding-block: var(--space-section); }
+
+/* Offset in-page anchor jumps for the fixed nav (no-JS / reduced-motion path) */
+:where(#top, #about, #services, #gallery, #contacts) {
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+}
+
+/* ---- Typography helpers ---- */
+.h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+}
+.lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-body);
+  color: var(--c-muted);
+}
+.lead + .lead { margin-top: 1.1rem; }
+
+.kicker {
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--c-bronze-ink);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.kicker--light { color: var(--c-bronze-light); }
+
+.accent-italic {
+  font-style: italic;
+  color: var(--c-bronze);
+}
+
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 1rem + 4vw, 3.5rem);
+}
+.section__intro {
+  max-width: 33ch;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--c-faint);
+}
+
+/* ---- Accessibility utilities ---- */
+.skip-link {
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translate(-50%, -130%);
+  z-index: 2000;
+  background: var(--c-ink);
+  color: var(--c-cream);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform var(--dur) var(--ease-out-expo);
+}
+.skip-link:focus-visible { transform: translate(-50%, 0); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   REVEAL — initial states only when JS is present.
+   Without JS everything is visible (no dead-hidden content).
+   ============================================================ */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  will-change: opacity, transform;
+}
+html.js [data-reveal-clip] {
+  clip-path: inset(0 0 100% 0);
+  will-change: clip-path, transform;
+}
+html.js [data-split] { opacity: 0; }
+
+/* Reduced motion OR motion-off (library failed to load): reveal everything. */
+html.reduce-motion [data-reveal],
+html.reduce-motion [data-reveal-clip],
+html.reduce-motion [data-split],
+html.motion-off [data-reveal],
+html.motion-off [data-reveal-clip],
+html.motion-off [data-split] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   PRELOADER — bronze pour. JS-gated; never traps no-JS users.
+   ============================================================ */
+.preloader { display: none; }
+html.js .preloader {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-ink);
+  transition: opacity 0.7s var(--ease-out-expo), visibility 0.7s;
+}
+.preloader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader__inner { text-align: center; padding: 2rem; }
+.preloader__mark {
+  position: relative;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 8vw, 3.6rem);
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+.preloader__word { color: rgba(246, 242, 236, 0.14); }
+.preloader__fill {
+  position: absolute;
+  inset: 0;
+  color: var(--c-bronze-light);
+  /* fills bottom-up like poured metal */
+  clip-path: inset(100% 0 0 0);
+  background: linear-gradient(180deg, var(--c-bronze-light), var(--c-bronze));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: clip-path 0.2s linear;
+}
+.preloader__bar {
+  width: min(240px, 60vw);
+  height: 2px;
+  margin: 1.75rem auto 0;
+  background: rgba(246, 242, 236, 0.12);
+  overflow: hidden;
+}
+.preloader__bar-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--c-bronze);
+  transition: width 0.2s linear;
+}
+.preloader__caption {
+  margin-top: 1.1rem;
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--c-on-dark-faint);
+}
+html.reduce-motion .preloader { transition: none; }

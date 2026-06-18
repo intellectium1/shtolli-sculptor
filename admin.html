@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#211d17">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Заявки — админ-панель · Мастерская ШТОЛЛИ</title>
+
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="16" fill="%23211d17"/><text x="50" y="71" font-family="Georgia,serif" font-size="60" fill="%23cdb494" text-anchor="middle">Ш</text></svg>'>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body class="admin">
+
+  <!-- ============ LOGIN GATE ============ -->
+  <div id="gate" class="gate">
+    <form class="gate__card" id="gate-form" autocomplete="off">
+      <div class="gate__brand">ШТОЛЛИ</div>
+      <div class="gate__sub">Панель заявок</div>
+      <label class="gate__label" for="gate-pass">Код доступа</label>
+      <input class="gate__input" type="password" id="gate-pass" autocomplete="current-password" placeholder="••••••••" autofocus>
+      <button class="gate__btn" type="submit">Войти</button>
+      <p class="gate__error" id="gate-error" role="alert"></p>
+      <p class="gate__note">
+        Демо-защита на стороне браузера — не настоящая авторизация.
+        Для реального доступа нескольких сотрудников нужен бэкенд
+        (Supabase / своё API). Код по умолчанию указан в README.
+      </p>
+    </form>
+  </div>
+
+  <!-- ============ APP ============ -->
+  <div id="app" class="admin-app" hidden>
+    <header class="admin-top">
+      <div class="admin-brand">
+        <span class="admin-brand__name">ШТОЛЛИ</span>
+        <span class="admin-brand__tag">Заявки</span>
+      </div>
+      <div class="admin-stats" id="admin-stats" aria-live="polite"></div>
+    </header>
+
+    <div class="admin-toolbar">
+      <input class="tb-search" id="tb-search" type="search" placeholder="Поиск: имя, контакт, текст…" aria-label="Поиск по заявкам">
+      <select class="tb-select" id="tb-source" aria-label="Источник заявки">
+        <option value="">Все источники</option>
+        <option value="quiz">Квиз-расчёт</option>
+        <option value="contact">Форма контактов</option>
+      </select>
+      <button class="tb-btn" id="tb-archive" type="button" aria-pressed="false">Архив</button>
+      <span class="tb-spacer"></span>
+      <button class="tb-btn tb-btn--ghost" id="tb-export" type="button" title="Скачать все заявки в JSON">Экспорт</button>
+      <button class="tb-btn tb-btn--ghost tb-btn--danger" id="tb-demo" type="button" title="Удалить демонстрационные заявки">Убрать демо</button>
+      <button class="tb-btn tb-btn--ghost" id="tb-logout" type="button">Выйти</button>
+    </div>
+
+    <main class="board" id="board" aria-label="Доска заявок"></main>
+  </div>
+
+  <!-- ============ LEAD DETAIL MODAL ============ -->
+  <div class="modal" id="lead-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__panel">
+      <div class="modal__head">
+        <div>
+          <h2 class="modal__title" id="modal-title">—</h2>
+          <div class="modal__meta" id="modal-meta"></div>
+        </div>
+        <button class="modal__close" id="modal-close" type="button" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="modal__body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script defer src="assets/js/leads-store.js"></script>
+  <script defer src="assets/js/admin.js"></script>
+</body>
+</html>

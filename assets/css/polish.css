@@ -1,0 +1,500 @@
+/* ============================================================
+   ШТОЛЛИ — Polish layer
+   Атмосферные эффекты + продающие механики
+   floating CTA · sticky bar · trust strip · testimonials
+   tilt cards · glow buttons · noise/grain · scroll progress
+   ============================================================ */
+
+/* ---------- Hero atmosphere: warm radial + animated grain ---------- */
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -10% -10% auto auto;
+  width: 60vw;
+  max-width: 800px;
+  aspect-ratio: 1;
+  z-index: -1;
+  background: radial-gradient(closest-side, var(--c-bronze-glow), transparent 70%);
+  pointer-events: none;
+  opacity: 0.9;
+}
+/* Note: noise SVG via feTurbulence killed for perf — keeps paint cheap on every scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__main img {
+    animation: slow-breath 14s ease-in-out infinite alternate;
+  }
+}
+@keyframes slow-breath {
+  from { transform: scale(1); }
+  to   { transform: scale(1.025); }
+}
+
+/* ---------- Primary button: bronze halo on hover ---------- */
+.btn--solid,
+.btn--bronze {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn--solid::before,
+.btn--bronze::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, transparent 35%, rgba(246,242,236,0.28) 50%, transparent 65%);
+  transform: translateX(-110%);
+  transition: transform 0.7s var(--ease-out-expo);
+}
+.btn--solid:hover::before,
+.btn--bronze:hover::before {
+  transform: translateX(110%);
+}
+
+/* Ring glow on focus/hover for primary CTAs */
+.btn--solid:hover,
+.btn--bronze:hover {
+  box-shadow: 0 0 0 3px var(--c-bronze-glow), 0 14px 36px -14px rgba(110, 77, 43, 0.55);
+}
+
+/* ---------- Service cards: 3D tilt + lift ---------- */
+.service-card {
+  transition: transform 0.45s var(--ease-out-soft),
+              box-shadow 0.45s var(--ease-out-soft),
+              border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(40, 28, 14, 0.35);
+}
+.service-card[data-tilted] {
+  transition: transform 0.18s ease-out, box-shadow 0.3s ease-out;
+}
+
+/* ---------- Gallery items: bronze glow lift ---------- */
+.gallery__item {
+  transition: transform 0.45s var(--ease-out-soft);
+}
+.gallery__item .gallery__frame {
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--img-bg);
+  display: block;
+  position: relative;
+}
+.gallery__item .gallery__frame img {
+  transition: transform 0.7s var(--ease-out-soft), filter 0.4s ease;
+}
+.gallery__item:hover { transform: translateY(-3px); }
+.gallery__item:hover .gallery__frame img {
+  transform: scale(1.04);
+  filter: contrast(1.04) saturate(1.06);
+}
+.gallery__item .gallery__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 60%, rgba(110, 77, 43, 0.22));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery__item:hover .gallery__frame::after { opacity: 1; }
+
+/* ---------- Article card lift ---------- */
+.article-card {
+  position: relative;
+  overflow: hidden;
+}
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--c-bronze);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.article-card:hover::before { transform: scaleX(1); }
+
+/* ---------- Slider: ken-burns active slide image ---------- */
+.projects-slide__img-wrap img {
+  transition: transform 12s ease-out;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-slide__img-wrap:hover img { transform: scale(1.06); }
+}
+
+/* ---------- TRUST STRIP — продающая механика #1 ---------- */
+.trust-strip {
+  background: var(--c-cream-2);
+  border-block: 1px solid var(--line);
+  padding-block: clamp(2rem, 3vw, 3rem);
+}
+.trust-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+}
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.trust-item__icon {
+  width: 38px; height: 38px;
+  color: var(--c-bronze);
+  margin-bottom: 0.25rem;
+}
+.trust-item__icon svg {
+  width: 100%; height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.trust-item__value {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.1rem);
+  font-weight: 500;
+  color: var(--c-ink);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.trust-item__label {
+  font-size: 0.78rem;
+  color: var(--c-faint);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---------- TESTIMONIALS — продающая механика #2 ---------- */
+.testimonials-section {
+  background: var(--c-ink);
+  color: var(--c-on-dark);
+  padding-block: clamp(4rem, 6vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -8%;
+  width: 50vw;
+  max-width: 600px;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(205, 180, 148, 0.18), transparent 70%);
+  pointer-events: none;
+}
+
+.testimonials-section .kicker { color: var(--c-bronze-light); margin-bottom: 1.25rem; }
+.testimonials-section .h2     { color: var(--c-on-dark); margin-bottom: clamp(2rem, 4vw, 3rem); max-width: 22ch; }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.testimonial-card {
+  position: relative;
+  background: rgba(246, 242, 236, 0.04);
+  border: 1px solid rgba(205, 180, 148, 0.14);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  transition: transform 0.4s var(--ease-out-soft), border-color 0.3s ease, background 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(205, 180, 148, 0.32);
+}
+.testimonial-card__quote-mark {
+  position: absolute;
+  top: 0.5rem; right: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--c-bronze);
+  opacity: 0.32;
+  pointer-events: none;
+}
+.testimonial-card__text {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--c-on-dark-soft);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.testimonial-card__avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-bronze), var(--c-bronze-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--c-ink);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.testimonial-card__name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--c-on-dark);
+  margin-bottom: 0.125rem;
+}
+.testimonial-card__role {
+  font-size: 0.75rem;
+  color: var(--c-on-dark-faint);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- FLOATING CTA — продающая механика #3 ---------- */
+.float-cta {
+  position: fixed;
+  right: clamp(1rem, 2vw, 1.5rem);
+  bottom: clamp(1rem, 2vw, 1.5rem);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.125rem 0.75rem 0.875rem;
+  background: var(--c-bronze);
+  color: var(--c-cream);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 30px -10px rgba(33, 29, 23, 0.45),
+              0 0 0 4px rgba(147, 103, 58, 0.18);
+  transform: translateY(120%) scale(0.9);
+  opacity: 0;
+  transition: transform 0.55s var(--ease-out-expo), opacity 0.4s ease, background 0.3s ease;
+}
+.float-cta.is-visible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.float-cta:hover {
+  background: var(--c-bronze-dark);
+  box-shadow: 0 16px 40px -8px rgba(33, 29, 23, 0.5),
+              0 0 0 6px rgba(147, 103, 58, 0.22);
+}
+.float-cta__icon {
+  width: 38px; height: 38px;
+  background: rgba(246, 242, 236, 0.16);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.float-cta__icon svg {
+  width: 20px; height: 20px;
+  fill: currentColor;
+}
+.float-cta__pulse {
+  position: absolute;
+  top: 8px; right: 10px;
+  width: 10px; height: 10px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--c-bronze);
+}
+.float-cta__pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: #4ade80;
+  opacity: 0.4;
+  animation: pulse-glow 1.8s ease-out infinite;
+}
+@keyframes pulse-glow {
+  0%   { transform: scale(0.8); opacity: 0.45; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+/* lift above mobile bottom-nav */
+@media (max-width: 900px) {
+  .float-cta {
+    bottom: calc(60px + env(safe-area-inset-bottom) + 12px);
+    right: 12px;
+    padding: 0.625rem 0.9rem 0.625rem 0.75rem;
+    font-size: 0.82rem;
+  }
+  .float-cta__icon { width: 32px; height: 32px; }
+  .float-cta__icon svg { width: 17px; height: 17px; }
+  /* Compact form on small phones — hide label, keep just icon */
+  @media (max-width: 480px) {
+    .float-cta__label { display: none; }
+    .float-cta { padding: 0.5rem; border-radius: 50%; }
+    .float-cta__icon { background: transparent; width: 30px; height: 30px; }
+  }
+}
+
+/* ---------- READING PROGRESS — для статей блога ---------- */
+.reading-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--c-bronze), var(--c-bronze-light));
+  z-index: 150;
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* ---------- Form field bronze focus ring ---------- */
+.form__input:focus {
+  outline: none;
+  border-color: var(--c-bronze) !important;
+  box-shadow: 0 0 0 3px var(--c-bronze-glow);
+}
+.form__input.has-error {
+  border-color: #c14a3a !important;
+  box-shadow: 0 0 0 3px rgba(193, 74, 58, 0.14);
+}
+
+/* ---------- Section dividers — bronze decorative ---------- */
+.divider-bronze {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+.divider-bronze::before,
+.divider-bronze::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+.divider-bronze__mark {
+  width: 30px; height: 30px;
+  color: var(--c-bronze);
+  flex-shrink: 0;
+}
+.divider-bronze__mark svg { width: 100%; height: 100%; }
+
+/* ---------- Stats numbers: bronze gradient text ---------- */
+.stat__num {
+  background: linear-gradient(180deg, var(--c-ink) 50%, var(--c-bronze) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Section heading: animated bronze underline mark ---------- */
+.h2 .accent-italic::after {
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.04em;
+  background: var(--c-bronze);
+  vertical-align: middle;
+  margin-left: 0.25em;
+  transform: translateY(-0.1em);
+}
+
+/* ---------- Mobile sticky CTA bar (after scroll) ---------- */
+.sticky-cta-bar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sticky-cta-bar {
+    display: flex;
+    position: fixed;
+    left: 12px; right: 12px;
+    bottom: calc(60px + env(safe-area-inset-bottom) + 8px);
+    z-index: 95;
+    background: var(--c-ink);
+    color: var(--c-cream);
+    border-radius: 14px;
+    padding: 0.625rem 0.875rem 0.625rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 16px 40px -12px rgba(33, 29, 23, 0.55);
+    transform: translateY(140%);
+    opacity: 0;
+    transition: transform 0.5s var(--ease-out-expo), opacity 0.3s ease;
+  }
+  .sticky-cta-bar.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .sticky-cta-bar__text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--c-on-dark-soft);
+    line-height: 1.3;
+  }
+  .sticky-cta-bar__btn {
+    background: var(--c-bronze);
+    color: var(--c-cream);
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 0.75rem;
+  }
+  .sticky-cta-bar__btn:hover { background: var(--c-bronze-dark); }
+  .sticky-cta-bar__close {
+    background: none;
+    border: none;
+    color: var(--c-on-dark-faint);
+    cursor: pointer;
+    padding: 0 0.5rem 0 0.25rem;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  /* If sticky CTA shown, push float-cta further up so they don't overlap */
+  .sticky-cta-bar.is-visible ~ .float-cta {
+    bottom: calc(60px + env(safe-area-inset-bottom) + 78px);
+  }
+}
+
+/* ---------- Magnetic glow ring for big CTAs ---------- */
+.btn--xl::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: radial-gradient(closest-side, var(--c-bronze-glow), transparent) border-box;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.btn--xl:hover::after { opacity: 1; }
+.btn--xl { position: relative; isolation: isolate; }
+
+/* ---------- Reduced motion: kill atmospheric & decorative animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .float-cta__pulse::after,
+  .hero__main img { animation: none !important; }
+  .hero::before,
+  .hero::after { display: none; }
+}

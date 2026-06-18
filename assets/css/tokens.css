@@ -1,0 +1,84 @@
+/* ============================================================
+   ШТОЛЛИ — Design tokens
+   Single source of truth for color, type, space, motion.
+   ============================================================ */
+
+:root {
+  /* ---- Color: warm bronze / foundry ---- */
+  --c-cream:        #f6f2ec;   /* page background */
+  --c-cream-2:      #fbf8f2;   /* raised surface / cards */
+  --c-cream-3:      #efe9df;   /* sunken surface */
+  --c-ink:          #211d17;   /* primary text / dark sections */
+  --c-ink-soft:     #3a342b;   /* secondary text on light */
+  --c-muted:        #5c554a;   /* body copy (~6.6:1 on cream) */
+  --c-faint:        #6e675b;   /* meta / captions (AA-safe ~5:1 on cream) */
+  --c-bronze:       #93673a;   /* primary accent (decorative / large text / button bg) */
+  --c-bronze-ink:   #855d33;   /* AA-safe bronze for SMALL text on cream (>= 5:1) */
+  --c-bronze-dark:  #6e4d2b;   /* accent pressed */
+  --c-bronze-light: #cdb494;   /* accent on dark */
+  --c-bronze-glow:  rgba(147, 103, 58, 0.16);
+
+  /* on-dark text */
+  --c-on-dark:      #f6f2ec;
+  --c-on-dark-soft: #e9e3d8;
+  --c-on-dark-faint:#9a9183;
+
+  /* hairlines */
+  --line:        rgba(33, 29, 23, 0.10);
+  --line-strong: rgba(33, 29, 23, 0.16);
+  --line-dark:   rgba(233, 227, 216, 0.16);
+
+  /* placeholder colour while images load (matches design) */
+  --img-bg:      #e7e0d3;
+
+  /* ---- Typography ---- */
+  --font-serif: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-sans:  'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --fs-hero:    clamp(2.4rem, 0.9rem + 4.8vw, 4.5rem);   /* sized so long RU words fit the hero column */
+  --fs-h2:      clamp(1.875rem, 1.1rem + 3vw, 3rem);     /* ~30 -> 48 */
+  --fs-h3:      clamp(1.375rem, 1.05rem + 1.4vw, 1.65rem);
+  --fs-display: clamp(2rem, 1.1rem + 4vw, 3.6rem);       /* CTA / contacts */
+  --fs-lead:    clamp(1rem, 0.96rem + 0.3vw, 1.125rem);
+  --fs-body:    1rem;
+  --fs-small:   0.875rem;
+  --fs-kicker:  0.78rem;
+
+  --lh-tight:   1.04;
+  --lh-snug:    1.14;
+  --lh-body:    1.7;
+
+  --tracking-kicker: 0.24em;
+  --tracking-wide:   0.18em;
+
+  /* ---- Spacing ---- */
+  --space-section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --gutter:        clamp(1.25rem, 0.5rem + 3vw, 2rem);
+  --maxw:          1240px;
+  --maxw-wide:     1400px;
+
+  /* ---- Radius / elevation ---- */
+  --radius-sm: 2px;
+  --radius:    3px;
+  --radius-lg: 4px;
+  --shadow-card:  0 24px 50px -30px rgba(40, 28, 14, 0.40);
+  --shadow-img:   0 30px 70px -28px rgba(40, 28, 14, 0.45);
+  --shadow-float: 0 40px 80px -30px rgba(40, 28, 14, 0.55);
+
+  /* ---- Motion ---- */
+  --ease-out-expo: cubic-bezier(0.16, 0.84, 0.34, 1);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   0.25s;
+  --dur:        0.4s;
+  --dur-slow:   0.9s;
+
+  /* nav */
+  --nav-h: 74px;
+
+  color-scheme: light;
+}
+
+@media (max-width: 640px) {
+  :root { --nav-h: 64px; }
+}

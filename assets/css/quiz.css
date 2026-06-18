@@ -1,0 +1,364 @@
+/* ============================================================
+   ШТОЛЛИ — Quiz
+   Пошаговая первичная заявка: 4 вопроса + контакты -> сводка
+   ============================================================ */
+
+.quiz-page {
+  padding-top: calc(var(--nav-h) + clamp(1.5rem, 3vw, 3rem));
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+  min-height: 70vh;
+}
+
+.quiz-shell {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+/* ---- Head ---- */
+.quiz-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.quiz-head .kicker { margin-bottom: 1rem; }
+.quiz-head__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3rem);
+  line-height: var(--lh-snug);
+  color: var(--c-ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.875rem;
+}
+.quiz-head__sub {
+  font-size: var(--fs-lead);
+  color: var(--c-muted);
+  max-width: 48ch;
+  margin-inline: auto;
+}
+
+/* ---- Progress ---- */
+.quiz-progress { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.quiz-progress__bar {
+  height: 5px;
+  background: var(--c-cream-3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.quiz-progress__fill {
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(90deg, var(--c-bronze), var(--c-bronze-light));
+  border-radius: 999px;
+  transition: width 0.5s var(--ease-out-expo);
+}
+.quiz-progress__label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.625rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+}
+.quiz-progress__label b { color: var(--c-bronze-ink); font-weight: 600; }
+
+/* ---- Card ---- */
+.quiz-card {
+  background: var(--c-cream-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Step ---- */
+.quiz-step { animation: quiz-in 0.45s var(--ease-out-expo); }
+.quiz-step[hidden] { display: none; }
+@keyframes quiz-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.quiz-step__q {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 1.9rem);
+  line-height: var(--lh-snug);
+  color: var(--c-ink);
+  margin-bottom: 0.5rem;
+}
+.quiz-step__hint {
+  font-size: 0.92rem;
+  color: var(--c-faint);
+  margin-bottom: 1.75rem;
+}
+
+/* ---- Options ---- */
+.quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
+}
+@media (max-width: 560px) {
+  .quiz-options { grid-template-columns: 1fr; }
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  text-align: left;
+  padding: 1.125rem 1.25rem;
+  background: var(--c-cream);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease,
+              transform 0.25s var(--ease-out-soft), box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.quiz-option:hover {
+  border-color: var(--c-bronze);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -22px rgba(40, 28, 14, 0.5);
+}
+.quiz-option:focus-visible {
+  outline: 2px solid var(--c-bronze);
+  outline-offset: 2px;
+}
+.quiz-option.is-selected {
+  border-color: var(--c-bronze);
+  background: var(--c-bronze-glow);
+}
+
+.quiz-option__icon {
+  width: 44px; height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--c-cream-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-bronze-ink);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.quiz-option.is-selected .quiz-option__icon {
+  background: var(--c-bronze);
+  color: var(--c-cream);
+}
+.quiz-option__icon svg {
+  width: 22px; height: 22px;
+  stroke: currentColor; stroke-width: 1.6; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Material swatch variant */
+.quiz-option__swatch {
+  width: 44px; height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.6);
+  box-shadow: inset 0 0 0 1px var(--line-strong), 0 2px 8px -2px rgba(40,28,14,0.4);
+}
+.swatch--bronze  { background: linear-gradient(135deg, #b07e44, #6e4d2b); }
+.swatch--brass   { background: linear-gradient(135deg, #e8c66a, #b8901f); }
+.swatch--melchior{ background: linear-gradient(135deg, #e6e8ea, #a9aeb4); }
+.swatch--unknown {
+  background: var(--c-cream-3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-bronze-ink); font-family: var(--font-serif); font-size: 1.3rem; font-weight: 600;
+}
+
+.quiz-option__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.quiz-option__label { font-size: 1rem; font-weight: 600; color: var(--c-ink); line-height: 1.25; }
+.quiz-option__desc  { font-size: 0.82rem; color: var(--c-faint); line-height: 1.35; }
+
+.quiz-option__check {
+  margin-left: auto;
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--c-bronze);
+  color: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s var(--ease-out-expo);
+}
+.quiz-option.is-selected .quiz-option__check { opacity: 1; transform: scale(1); }
+.quiz-option__check svg { width: 13px; height: 13px; stroke: currentColor; stroke-width: 3; fill: none; }
+
+/* ---- Contact fields step ---- */
+.quiz-fields { display: grid; gap: 1.125rem; }
+.quiz-fields .form__field { margin: 0; }
+
+/* ---- Nav ---- */
+.quiz-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+.quiz-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--c-faint);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 0.25rem;
+  transition: color 0.2s ease;
+}
+.quiz-back:hover { color: var(--c-bronze-ink); }
+.quiz-back svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.quiz-back[hidden] { visibility: hidden; }
+
+/* ---- Result ---- */
+.quiz-result { text-align: center; animation: quiz-in 0.5s var(--ease-out-expo); }
+.quiz-result__icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: var(--c-bronze);
+  color: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+}
+.quiz-result__icon svg { width: 30px; height: 30px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.quiz-result__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  color: var(--c-ink);
+  margin-bottom: 0.625rem;
+}
+.quiz-result__sub {
+  font-size: 1rem;
+  color: var(--c-muted);
+  max-width: 44ch;
+  margin: 0 auto 1.75rem;
+}
+
+.quiz-summary {
+  text-align: left;
+  background: var(--c-cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.375rem;
+  margin-bottom: 1.75rem;
+}
+.quiz-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+.quiz-summary__row:last-child { border-bottom: none; }
+.quiz-summary__key { color: var(--c-faint); flex-shrink: 0; }
+.quiz-summary__val { color: var(--c-ink); font-weight: 600; text-align: right; }
+
+.quiz-send {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 480px) { .quiz-send { grid-template-columns: 1fr; } }
+
+.quiz-send__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-out-expo), filter 0.25s ease, background 0.25s ease;
+}
+.quiz-send__btn:hover { transform: translateY(-2px); }
+.quiz-send__btn svg { width: 19px; height: 19px; }
+.quiz-send__btn--wa  { background: #25D366; color: #fff; }
+.quiz-send__btn--wa:hover { filter: brightness(0.95); }
+.quiz-send__btn--tg  { background: #229ED9; color: #fff; }
+.quiz-send__btn--tg:hover { filter: brightness(0.95); }
+.quiz-send__btn--mail{ background: var(--c-ink); color: var(--c-cream); }
+.quiz-send__btn--copy{ background: var(--c-cream-3); color: var(--c-ink); border-color: var(--line-strong); }
+
+.quiz-result__note {
+  font-size: 0.82rem;
+  color: var(--c-faint);
+  margin-top: 0.5rem;
+}
+.quiz-restart {
+  background: none; border: none; cursor: pointer;
+  color: var(--c-bronze-ink); font-size: 0.88rem; font-weight: 600;
+  text-decoration: underline; margin-top: 1.25rem;
+}
+
+/* Trust micro-row under the card */
+.quiz-assure {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem 2rem;
+  margin-top: 1.75rem;
+}
+.quiz-assure__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--c-faint);
+}
+.quiz-assure__item svg { width: 16px; height: 16px; stroke: var(--c-bronze); stroke-width: 1.7; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-step, .quiz-result { animation: none; }
+  .quiz-option:hover, .quiz-send__btn:hover { transform: none; }
+}
+
+/* ============================================================
+   Contact-step input fields — LIGHT theme override
+   ------------------------------------------------------------
+   Base `.form__input` (components.css) is styled for the DARK
+   contacts section on index.html: cream text on a near-transparent
+   fill with a light-on-dark hairline. Reused as-is on the quiz's
+   LIGHT card, the typed text was cream-on-cream (invisible) and the
+   border/label washed out. These overrides make the fields read as
+   dark-on-light. Contrast checked against WCAG 2.2 AA:
+     text   --c-ink (#211d17) on --c-cream-3 (#efe9df) ~ 12:1
+     holder --c-faint (#6e675b) on --c-cream-3          ~ 4.8:1
+     label  --c-ink-soft (#3a342b) on card               ~ 11:1
+   The recessed fill (cream-3, darker than the cream-2 card) gives a
+   clear field boundary on top of the hairline border.
+   ============================================================ */
+.quiz-page .form__label {
+  color: var(--c-ink-soft);
+}
+.quiz-page .form__input {
+  background: var(--c-cream-3);
+  border: 1.5px solid var(--line-strong);
+  color: var(--c-ink);
+}
+.quiz-page .form__input::placeholder {
+  color: var(--c-faint);
+  opacity: 1; /* Firefox dims placeholders by default */
+}
+.quiz-page .form__input:focus {
+  border-color: var(--c-bronze) !important;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--c-bronze-glow);
+}
+.quiz-page .form__field.has-error .form__input,
+.quiz-page .form__input.has-error {
+  border-color: #b3461f !important;
+  box-shadow: 0 0 0 3px rgba(179, 70, 31, 0.14);
+}
+.quiz-page .form__error { color: #b3461f; }
