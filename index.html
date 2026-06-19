@@ -334,7 +334,7 @@
         <h2 id="projects-heading" class="h2 projects__title" data-reveal data-reveal-delay="0.08">Работы, которыми гордимся</h2>
 
         <div class="projects-slider-wrap">
-          <div class="projects-slider" id="projects-slider" aria-label="Слайдер проектов" role="region">
+          <div class="projects-slider" id="projects-slider" aria-label="Избранные проекты" role="region" aria-roledescription="карусель">
             <div class="projects-slider__track" id="projects-slider-track">
 
               <div class="projects-slide">
@@ -365,14 +365,14 @@
 
               <div class="projects-slide">
                 <div class="projects-slide__img-wrap">
-                  <img src="assets/img/proj-vesy.webp" width="1200" height="900"
-                       alt="Весы для Адлерского Центрального рынка — высота 2,5 м" loading="lazy" decoding="async">
+                  <img src="assets/img/proj-vesy.webp" width="699" height="813"
+                       alt="Весы для Адлерского рынка — интерактивный арт-объект из чёрного металла" loading="lazy" decoding="async">
                 </div>
                 <div class="projects-slide__info">
                   <span class="projects-slide__num">03 / 05</span>
                   <h3 class="projects-slide__title">Весы для Адлерского Центрального рынка</h3>
-                  <p class="projects-slide__meta">Металлоконструкция · действующий механизм · 2,5&nbsp;м</p>
-                  <p class="projects-slide__desc">Не&nbsp;литьё, а&nbsp;инженерная работа: весы из&nbsp;металла мы&nbsp;разработали и&nbsp;собрали с&nbsp;нуля по&nbsp;авторскому эскизу&nbsp;— с&nbsp;действующим механизмом, который показывает реальный вес. Символ честной торговли высотой 2,5&nbsp;м: от&nbsp;3D&#8209;модели до&nbsp;монтажа на&nbsp;месте.</p>
+                  <p class="projects-slide__meta">Интерактивный арт-объект · чёрный металл · 2,5&nbsp;м</p>
+                  <p class="projects-slide__desc">Большой интерактивный арт-объект для рынка: действующие весы из&nbsp;чёрного металла, на&nbsp;которые можно встать и&nbsp;взвеситься. Конструкцию придумали, собрали и&nbsp;смонтировали с&nbsp;нуля по&nbsp;авторскому эскизу&nbsp;— это ручная металлоработа, не&nbsp;литьё.</p>
                 </div>
               </div>
 
@@ -405,7 +405,10 @@
             </div><!-- /track -->
           </div><!-- /slider -->
 
+          <div class="projects-slider__bar" aria-hidden="true"><span class="projects-slider__bar-fill" id="slider-bar-fill"></span></div>
           <div class="projects-slider__controls">
+            <div class="projects-slider__count" aria-hidden="true"><b id="slider-cur">01</b> / <span id="slider-total">05</span></div>
+            <div class="projects-slider__dots" id="slider-dots" role="tablist" aria-label="Навигация по слайдам"></div>
             <div class="projects-slider__btns">
               <button class="projects-slider__btn" id="slider-prev" aria-label="Предыдущий проект">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
@@ -414,7 +417,6 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
               </button>
             </div>
-            <div class="projects-slider__dots" id="slider-dots" role="tablist" aria-label="Навигация по слайдам"></div>
           </div>
         </div>
       </div>
@@ -582,6 +584,83 @@
             <figcaption class="gallery__cap"><span class="gallery__name">Тамга</span><span class="gallery__material">Полированная латунь, холст</span></figcaption>
           </figure>
 
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.671">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Бык и волки">
+              <span class="gallery__frame"><img src="assets/img/byk.webp" width="784" height="1168" alt="Скульптура «Бык и волки» — бронза, патинирование" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Бык и волки</span><span class="gallery__material">Бронза, патинирование</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Иоанн III">
+              <span class="gallery__frame"><img src="assets/img/ioann.webp" width="960" height="1280" alt="Бюст «Иоанн III» — бронза, патинирование" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Иоанн III</span><span class="gallery__material">Бронза, патинирование</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.562">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Балерины">
+              <span class="gallery__frame"><img src="assets/img/baleriny.webp" width="720" height="1280" alt="Скульптуры «Балерины» — бронза на латунных основаниях" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Балерины</span><span class="gallery__material">Бронза, латунь</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.562">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Голова коня">
+              <span class="gallery__frame"><img src="assets/img/kon.webp" width="720" height="1280" alt="Скульптура «Голова коня» — бронза, патинирование" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Голова коня</span><span class="gallery__material">Бронза, патинирование</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Мальчики на набережной Сухума">
+              <span class="gallery__frame"><img src="assets/img/malchiki-suhum.webp" width="960" height="1280" alt="Садово-парковая скульптура «Мальчики» на набережной Сухума — бронза" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Мальчики. Набережная Сухума</span><span class="gallery__material">Бронза · садово-парковая</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.562">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Мечтатель и реалист">
+              <span class="gallery__frame"><img src="assets/img/mechtatel-realist.webp" width="720" height="1280" alt="Скульптурная композиция «Мечтатель и реалист» — бронза на камне" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Мечтатель и реалист</span><span class="gallery__material">Бронза, камень</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Охотник с собакой">
+              <span class="gallery__frame"><img src="assets/img/ohotnik.webp" width="1050" height="1400" alt="Скульптура «Охотник с собакой» — бронза на каменном основании" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Охотник с собакой</span><span class="gallery__material">Бронза, камень</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Пара собачек">
+              <span class="gallery__frame"><img src="assets/img/para-sobachek.webp" width="960" height="1280" alt="Парные скульптуры собак — бронза, патинирование" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Пара собачек</span><span class="gallery__material">Бронза, патинирование</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Дверной молоток «Голова быка»">
+              <span class="gallery__frame"><img src="assets/img/dvernoy-molotok.webp" width="960" height="1280" alt="Дверной молоток «Голова быка» с орнаментом — бронза" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Дверной молоток «Голова быка»</span><span class="gallery__material">Бронза</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Наградные медали конкурса вин">
+              <span class="gallery__frame"><img src="assets/img/medali-vino.webp" width="960" height="1280" alt="Наградные медали конкурса вин Абхазии — латунь, бронза" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Наградные медали конкурса вин</span><span class="gallery__material">Латунь, бронза</span></figcaption>
+          </figure>
+
+          <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Улитка">
+              <span class="gallery__frame"><img src="assets/img/ulitka.webp" width="1050" height="1400" alt="Миниатюра «Улитка» — бронза, цветная патина" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="gallery__cap"><span class="gallery__name">Улитка</span><span class="gallery__material">Бронза, патина</span></figcaption>
+          </figure>
+
         </div>
       </div>
     </section>
@@ -653,7 +732,7 @@
 
           <article class="testimonial-card">
             <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testimonial-card__text">Заказывали декоративные весы 2,5&nbsp;метра для нашего рынка. Их&nbsp;не&nbsp;отливали — конструкцию из&nbsp;металла разработали и&nbsp;собрали с&nbsp;нуля, с&nbsp;действующим механизмом, который показывает реальный вес. Команда сама приехала, спроектировала и&nbsp;смонтировала. Покупатели специально приходят посмотреть и&nbsp;взвеситься.</p>
+            <p class="testimonial-card__text">Заказывали большие весы для нашего рынка — это интерактивный арт-объект из&nbsp;чёрного металла, на&nbsp;который можно встать и&nbsp;взвеситься. Ребята всё придумали, собрали и&nbsp;смонтировали сами&nbsp;— без литья и&nbsp;шаблонов. Покупатели специально приходят посмотреть и&nbsp;сфотографироваться.</p>
             <div class="testimonial-card__author">
               <div class="testimonial-card__avatar" aria-hidden="true">В</div>
               <div>
