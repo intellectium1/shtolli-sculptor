@@ -408,7 +408,7 @@
           <div class="projects-slider__bar" aria-hidden="true"><span class="projects-slider__bar-fill" id="slider-bar-fill"></span></div>
           <div class="projects-slider__controls">
             <div class="projects-slider__count" aria-hidden="true"><b id="slider-cur">01</b> / <span id="slider-total">05</span></div>
-            <div class="projects-slider__dots" id="slider-dots" role="tablist" aria-label="Навигация по слайдам"></div>
+            <div class="projects-slider__dots" id="slider-dots" role="group" aria-label="Навигация по слайдам"></div>
             <div class="projects-slider__btns">
               <button class="projects-slider__btn" id="slider-prev" aria-label="Предыдущий проект">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
@@ -418,6 +418,7 @@
               </button>
             </div>
           </div>
+          <span class="visually-hidden" id="slider-live" aria-live="polite"></span>
         </div>
       </div>
     </section>
@@ -438,10 +439,10 @@
         <div class="gallery__masonry" id="gallery-grid">
 
           <figure class="gallery__item" data-reveal data-lightbox style="--ar:.75">
-            <button type="button" class="gallery__btn" aria-label="Открыть работу: Бронзовый морской конёк">
-              <span class="gallery__frame"><img src="assets/img/morskoy-konek.webp" width="1050" height="1400" alt="Бронзовый морской конёк — бронза, патинирование, 30 см" loading="lazy" decoding="async"></span>
+            <button type="button" class="gallery__btn" aria-label="Открыть работу: Морской конёк">
+              <span class="gallery__frame"><img src="assets/img/morskoy-konek.webp" width="1050" height="1400" alt="Морской конёк — бронза, патинирование, 30 см" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="gallery__cap"><span class="gallery__name">Бронзовый морской конёк</span><span class="gallery__material">Бронза, патинирование · 30 см</span></figcaption>
+            <figcaption class="gallery__cap"><span class="gallery__name">Морской конёк</span><span class="gallery__material">Бронза, патинирование · 30 см</span></figcaption>
           </figure>
 
           <figure class="gallery__item" data-reveal data-lightbox style="--ar:.667">
@@ -825,7 +826,7 @@
     <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Предыдущая работа">&#8249;</button>
     <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Следующая работа">&#8250;</button>
     <figure class="lightbox__stage">
-      <img class="lightbox__img" id="lightbox-img" src="" alt="">
+      <img class="lightbox__img" id="lightbox-img" src="" alt="" aria-hidden="true">
       <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
     </figure>
   </div>

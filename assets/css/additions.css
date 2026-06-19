@@ -102,7 +102,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
   scrollbar-width: none;
@@ -143,7 +142,7 @@
   will-change: transform;
 }
 @media (max-width: 700px) {
-  .projects-slide__img-wrap { aspect-ratio: 3/4; }
+  .projects-slide__img-wrap { aspect-ratio: 3/4; max-height: 46vh; }
 }
 
 .projects-slide__info { padding-block: clamp(0.5rem, 2vw, 2rem); }

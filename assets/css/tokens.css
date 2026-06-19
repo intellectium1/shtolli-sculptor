@@ -12,7 +12,7 @@
   --c-ink-soft:     #3a342b;   /* secondary text on light */
   --c-muted:        #5c554a;   /* body copy (~6.6:1 on cream) */
   --c-faint:        #6e675b;   /* meta / captions (AA-safe ~5:1 on cream) */
-  --c-bronze:       #93673a;   /* primary accent (decorative / large text / button bg) */
+  --c-bronze:       #8a6135;   /* primary accent / button bg — darkened to clear WCAG AA (>=4.5:1 cream-on-bronze) */
   --c-bronze-ink:   #855d33;   /* AA-safe bronze for SMALL text on cream (>= 5:1) */
   --c-bronze-dark:  #6e4d2b;   /* accent pressed */
   --c-bronze-light: #cdb494;   /* accent on dark */

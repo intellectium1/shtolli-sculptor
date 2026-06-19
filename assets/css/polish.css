@@ -344,6 +344,7 @@
     .float-cta__label { display: none; }
     .float-cta { padding: 0.5rem; border-radius: 50%; }
     .float-cta__icon { background: transparent; width: 30px; height: 30px; }
+    .float-cta__pulse { display: none; } /* offset calibrated for the pill, not the circle */
   }
 }
 

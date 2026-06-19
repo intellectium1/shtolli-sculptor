@@ -21,9 +21,10 @@
   var barFill  = document.getElementById('slider-bar-fill');
   var curEl    = document.getElementById('slider-cur');
   var totalEl  = document.getElementById('slider-total');
+  var liveEl   = document.getElementById('slider-live');
   var reduce   = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var current  = 0;
+  var current  = -1;   /* -1 so the first setActive(0) actually paints state */
   var pad = function (n) { return ('0' + n).slice(-2); };
   if (totalEl) totalEl.textContent = pad(total);
 
@@ -62,6 +63,10 @@
     if (barFill) barFill.style.width = ((i + 1) / total * 100) + '%';
     if (btnPrev) btnPrev.disabled = (i === 0);
     if (btnNext) btnNext.disabled = (i === total - 1);
+    if (liveEl) {
+      var t = slides[i].querySelector('.projects-slide__title');
+      liveEl.textContent = 'Слайд ' + (i + 1) + ' из ' + total + (t ? ': ' + t.textContent : '');
+    }
   }
   setActive(0);
 
@@ -111,7 +116,7 @@
   /* ---- Ping-pong autoplay; permanently yields after first interaction ---- */
   var autoTimer = null, dir = 1, stopped = false;
   function startAuto() {
-    if (reduce || stopped || total < 2) return;
+    if (reduce || stopped || total < 2 || autoTimer) return;
     autoTimer = window.setInterval(function () {
       if (document.hidden) return;
       if (current >= total - 1) dir = -1; else if (current <= 0) dir = 1;
