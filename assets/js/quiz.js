@@ -28,6 +28,7 @@
   var fill      = document.getElementById('quiz-fill');
   var stepNow   = document.getElementById('quiz-step-now');
   var stepWord  = document.getElementById('quiz-step-word');
+  var stepSR    = document.getElementById('quiz-progress-sr');
   var backBtn   = document.getElementById('quiz-back');
   var cardEl    = document.getElementById('quiz-card');
   var resultEl  = document.getElementById('quiz-result');
@@ -71,8 +72,10 @@
     var pct = Math.round((shown / TOTAL) * 100);
     if (fill) fill.style.width = pct + '%';
     var isContact = current >= QCOUNT;
+    var label = isContact ? 'Контактные данные' : ('Вопрос ' + shown + ' из ' + QCOUNT);
     if (stepNow)  stepNow.textContent = isContact ? 'Контакты' : ('Вопрос ' + shown + ' из ' + QCOUNT);
     if (stepWord) stepWord.textContent = pct + '%';
+    if (stepSR)   stepSR.textContent = label;   /* announced to screen readers */
   }
 
   backBtn.addEventListener('click', function () { goTo(current - 1, true); });

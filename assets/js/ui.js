@@ -162,8 +162,14 @@
     function render(i) {
       var it = items[i];
       if (!it) return;
-      imgEl.src = it.src;
+      imgEl.removeAttribute('aria-hidden');           // expose image inside the open dialog (a11y)
+      imgEl.style.opacity = '0';                        // crossfade between works
       imgEl.alt = it.alt;
+      imgEl.src = it.src;
+      var reveal = function () { imgEl.style.opacity = '1'; };
+      if (imgEl.complete) reveal(); else { imgEl.onload = reveal; imgEl.onerror = reveal; }
+      // Preload neighbours so navigation feels instant
+      [items[i + 1], items[i - 1]].forEach(function (n) { if (n && n.src) { var p = new Image(); p.src = n.src; } });
       capEl.textContent = it.material ? (it.name + ' — ' + it.material) : it.name;
     }
     function openAt(i) {
@@ -202,6 +208,13 @@
       if (e.key === 'ArrowLeft') go(-1);
       else if (e.key === 'ArrowRight') go(1);
     });
+    // Touch swipe (no arrow buttons needed on phones)
+    var swipeX = 0;
+    box.addEventListener('touchstart', function (e) { swipeX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - swipeX;
+      if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
   })();
 
   /* ---------- CONTACT FORM ---------- */
@@ -215,13 +228,15 @@
     function setError(input, message) {
       var field = input.closest('.form__field');
       var err = field ? $('.form__error', field) : null;
+      if (err) { if (!err.id) err.id = input.id + '-error'; err.setAttribute('role', 'alert'); }
       if (message) {
         if (field) field.classList.add('has-error');
         input.setAttribute('aria-invalid', 'true');
-        if (err) err.textContent = message;
+        if (err) { err.textContent = message; input.setAttribute('aria-describedby', err.id); }
       } else {
         if (field) field.classList.remove('has-error');
         input.removeAttribute('aria-invalid');
+        input.removeAttribute('aria-describedby');
         if (err) err.textContent = '';
       }
     }
@@ -258,7 +273,8 @@
       if (submitBtn) { submitBtn.textContent = 'Спасибо! Мы свяжемся с вами'; submitBtn.disabled = true; }
       if (hint) {
         hint.innerHTML = 'Заявка готова. Если почтовый клиент не открылся — напишите нам в ' +
-                         '<a href="https://t.me/shtoll" target="_blank" rel="noopener" style="text-decoration:underline">Telegram</a>.';
+                         '<a href="https://t.me/shtolli_sculptor" target="_blank" rel="noopener" style="text-decoration:underline">Telegram</a> или ' +
+                         '<a href="https://wa.me/79384499311" target="_blank" rel="noopener" style="text-decoration:underline">WhatsApp</a>.';
       }
       try { window.location.href = mailto; } catch (err) {}
 

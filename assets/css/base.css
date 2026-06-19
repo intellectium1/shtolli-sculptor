@@ -98,7 +98,7 @@ h1, h2, h3, p, dl, dd, figure { margin: 0; }
   margin-bottom: clamp(2.5rem, 1rem + 4vw, 3.5rem);
 }
 .section__intro {
-  max-width: 33ch;
+  max-width: 44ch;
   font-size: 0.97rem;
   line-height: 1.6;
   color: var(--c-faint);
@@ -176,7 +176,7 @@ html.js .preloader {
   align-items: center;
   justify-content: center;
   background: var(--c-ink);
-  transition: opacity 0.7s var(--ease-out-expo), visibility 0.7s;
+  transition: opacity 0.35s var(--ease-out-expo), visibility 0.35s;
 }
 .preloader.is-done {
   opacity: 0;

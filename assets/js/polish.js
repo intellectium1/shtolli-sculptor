@@ -43,11 +43,9 @@
     });
   }
 
-  /* ----- FLOATING CTA + STICKY BAR reveal after user scrolls past hero ----- */
+  /* ----- FLOATING CTA reveal after user scrolls past hero ----- */
   var floatCta  = document.querySelector('.float-cta');
-  var stickyBar = document.querySelector('.sticky-cta-bar');
   var thresholdRevealed = false;
-  var stickyDismissed   = sessionStorage.getItem('shtolliStickyDismissed') === '1';
 
   function onScroll() {
     var revealAt = Math.max(window.innerHeight * 0.6, 400);
@@ -55,7 +53,6 @@
     if (visible !== thresholdRevealed) {
       thresholdRevealed = visible;
       if (floatCta) floatCta.classList.toggle('is-visible', visible);
-      if (stickyBar && !stickyDismissed) stickyBar.classList.toggle('is-visible', visible);
     }
     // Reading progress
     if (progressBar) {
@@ -73,16 +70,6 @@
     progressBar = document.createElement('div');
     progressBar.className = 'reading-progress';
     document.body.appendChild(progressBar);
-  }
-
-  /* ----- STICKY bar close button ----- */
-  var stickyClose = document.querySelector('.sticky-cta-bar__close');
-  if (stickyClose && stickyBar) {
-    stickyClose.addEventListener('click', function () {
-      stickyBar.classList.remove('is-visible');
-      sessionStorage.setItem('shtolliStickyDismissed', '1');
-      stickyDismissed = true;
-    });
   }
 
   /* Throttle via rAF */

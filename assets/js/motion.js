@@ -37,7 +37,7 @@
     var pl = $('#preloader');
     if (!pl) { if (done) done(); return; }
     pl.classList.add('is-done');
-    window.setTimeout(function () { pl.style.display = 'none'; }, reduce ? 0 : 760);
+    window.setTimeout(function () { pl.style.display = 'none'; }, reduce ? 0 : 360);
     if (done) done();
   }
 
@@ -219,7 +219,7 @@
         yTo((e.clientY - (r.top + r.height / 2)) * 0.3);
       });
       btn.addEventListener('mouseleave', function () {
-        gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.45)' });
+        gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: 'power4.out' });
       });
     });
   }
@@ -282,8 +282,8 @@
         ScrollTrigger.refresh();
       }
     });
-    if (fill) tl.to(fill, { clipPath: 'inset(0% 0 0 0)', duration: 0.95, ease: 'power2.out' }, 0);
-    if (bar)  tl.to(bar, { width: '100%', duration: 0.95, ease: 'power1.inOut' }, 0);
+    if (fill) tl.to(fill, { clipPath: 'inset(0% 0 0 0)', duration: 0.55, ease: 'power2.out' }, 0);
+    if (bar)  tl.to(bar, { width: '100%', duration: 0.55, ease: 'power1.inOut' }, 0);
     if (!fill && !bar) { dismissPreloader(playHero); }
   }
 
