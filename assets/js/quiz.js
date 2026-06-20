@@ -32,6 +32,10 @@
   var backBtn   = document.getElementById('quiz-back');
   var cardEl    = document.getElementById('quiz-card');
   var resultEl  = document.getElementById('quiz-result');
+  var resTitle  = document.querySelector('.quiz-result__title');
+  var resSub    = document.querySelector('.quiz-result__sub');
+  var DEF_TITLE = resTitle ? resTitle.textContent : '';
+  var DEF_SUB   = resSub ? resSub.textContent : '';
 
   /* ---------- Option buttons (questions) ---------- */
   steps.forEach(function (stepEl) {
@@ -116,6 +120,34 @@
       answers.comment = commentInput.value.trim();
       saveLead();
       showResult();
+      sendLead();
+    });
+  }
+
+  /* Auto-send the lead (Formspree). Falls back silently to the manual
+     WhatsApp/Telegram/e-mail buttons when not configured or on error. */
+  function sendLead() {
+    var statusEl = document.getElementById('quiz-sent');
+    var configured = !!(window.SHTOLLI_FORMSPREE || '').trim();
+    if (!window.ShtolliSend || !configured) return;   // manual flow stays as-is
+    if (statusEl) { statusEl.hidden = false; statusEl.className = 'quiz-sent is-pending'; statusEl.textContent = 'Отправляем заявку…'; }
+    window.ShtolliSend({
+      name: answers.name, contact: answers.contact,
+      type: answers.type, material: answers.material,
+      size: answers.size, timeline: answers.timeline,
+      comment: answers.comment || '',
+      _subject: 'Заявка с квиза ШТОЛЛИ', source: 'Квиз'
+    }).then(function (ok) {
+      var title = document.querySelector('.quiz-result__title');
+      var sub   = document.querySelector('.quiz-result__sub');
+      if (ok) {
+        if (title) title.textContent = 'Заявка отправлена ✓';
+        if (sub)   sub.textContent = 'Спасибо! Мы свяжемся с вами в течение дня. При желании продублируйте заявку в мессенджер:';
+        if (statusEl) { statusEl.className = 'quiz-sent is-ok'; statusEl.textContent = '✓ Заявка ушла мастеру'; }
+      } else if (statusEl) {
+        statusEl.className = 'quiz-sent is-fail';
+        statusEl.textContent = 'Не удалось отправить автоматически — отправьте заявку любым способом ниже:';
+      }
     });
   }
 
@@ -155,6 +187,12 @@
 
   function showResult() {
     var text = buildText();
+
+    // Reset any state left over from a previous run (restart -> resubmit)
+    var sentEl = document.getElementById('quiz-sent');
+    if (sentEl) { sentEl.hidden = true; sentEl.textContent = ''; sentEl.className = 'quiz-sent'; }
+    if (resTitle) resTitle.textContent = DEF_TITLE;
+    if (resSub)   resSub.textContent = DEF_SUB;
 
     // Summary rows
     var sum = document.getElementById('quiz-summary');

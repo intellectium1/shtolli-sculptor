@@ -260,6 +260,20 @@
 .quiz-summary__key { color: var(--c-faint); flex-shrink: 0; }
 .quiz-summary__val { color: var(--c-ink); font-weight: 600; text-align: right; }
 
+/* Auto-send status (Formspree) */
+.quiz-sent {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin: 0 auto 1.25rem;
+  max-width: 46ch;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius);
+}
+.quiz-sent.is-pending { color: var(--c-faint); }
+.quiz-sent.is-ok      { color: #1f7a3d; background: rgba(31, 122, 61, 0.08); }
+.quiz-sent.is-fail    { color: #b03a2e; background: rgba(176, 58, 46, 0.08); }
+.quiz-sent[hidden]    { display: none; }
+
 .quiz-send {
   display: grid;
   grid-template-columns: 1fr 1fr;

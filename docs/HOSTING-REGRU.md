@@ -322,3 +322,35 @@ Sitemap: https://shtolli.ru/sitemap.xml
 - Email мастерской: `shtolik@list.ru`
 - Тех. поддержка рег.ру: [reg.ru/support](https://www.reg.ru/support/)
 - Документация рег.ру по FTP: [reg.ru/support/hosting/ftp](https://www.reg.ru/support/hosting/ftp)
+
+---
+
+## 12. Автоотправка заявок на e-mail (Formspree)
+
+По умолчанию форма и квиз работают в ручном режиме (WhatsApp/Telegram/почта) и
+сохраняют заявки в `/admin.html`. Чтобы заявки приходили на почту **автоматически**:
+
+1. Зарегистрируйтесь на [formspree.io](https://formspree.io), создайте форму на адрес
+   `shtolik@list.ru` (бесплатный тариф — 50 заявок/мес).
+2. Скопируйте endpoint формы вида `https://formspree.io/f/xxxxxxxx`.
+3. Откройте `assets/js/config.js` и вставьте его в строку:
+   `window.SHTOLLI_FORMSPREE = 'https://formspree.io/f/xxxxxxxx';`
+4. Загрузите изменённый `config.js` на хостинг.
+
+После этого при отправке формы/квиза заявка уходит на почту в фоне, пользователю
+показывается «Заявка отправлена ✓». Если Formspree недоступен — автоматически
+включается прежний ручной фолбэк (мессенджеры/почта), ничего не теряется.
+
+> Альтернатива — **EmailJS**: тогда в `config.js` замените тело `ShtolliSend`
+> на вызов `emailjs.send(...)` (интерфейс — `Promise<boolean>`).
+
+## 13. Безопасность сторонних скриптов (SRI)
+
+CDN-скрипты (GSAP, Lenis) подключены с атрибутами `integrity="sha384-…"` и
+`crossorigin="anonymous"` — браузер проверяет контрольную сумму файла и не выполнит
+его при подмене на CDN. Версии зафиксированы (`gsap@3.15.0`, `lenis@1.3.23`).
+**При обновлении версии библиотеки пересчитайте хеш**, иначе скрипт перестанет
+грузиться:
+```bash
+curl -fsSL <URL> | openssl dgst -sha384 -binary | openssl base64 -A
+```

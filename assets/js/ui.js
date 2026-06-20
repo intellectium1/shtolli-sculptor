@@ -261,7 +261,7 @@
         } catch (err) {}
       }
 
-      // No backend: compose a mailto so the message is not lost, and confirm.
+      // mailto fallback so the message is never lost if auto-send is off/fails.
       var subject = encodeURIComponent('Заявка с сайта — ' + name.value.trim());
       var body = encodeURIComponent(
         'Имя: ' + name.value.trim() + '\n' +
@@ -270,19 +270,41 @@
       );
       var mailto = 'mailto:shtolik@list.ru?subject=' + subject + '&body=' + body;
 
-      if (submitBtn) { submitBtn.textContent = 'Спасибо! Мы свяжемся с вами'; submitBtn.disabled = true; }
-      if (hint) {
-        hint.innerHTML = 'Заявка готова. Если почтовый клиент не открылся — напишите нам в ' +
-                         '<a href="https://t.me/shtolli_sculptor" target="_blank" rel="noopener" style="text-decoration:underline">Telegram</a> или ' +
-                         '<a href="https://wa.me/79384499311" target="_blank" rel="noopener" style="text-decoration:underline">WhatsApp</a>.';
+      function resetSoon() {
+        setTimeout(function () {
+          if (submitBtn) { submitBtn.textContent = defaultLabel; submitBtn.disabled = false; }
+          if (hint) hint.textContent = '';
+          formEl.reset();
+        }, 6000);
       }
-      try { window.location.href = mailto; } catch (err) {}
 
-      setTimeout(function () {
-        if (submitBtn) { submitBtn.textContent = defaultLabel; submitBtn.disabled = false; }
-        if (hint) hint.textContent = '';
-        formEl.reset();
-      }, 6000);
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Отправляем…'; }
+
+      var send = window.ShtolliSend
+        ? window.ShtolliSend({
+            name: name.value.trim(),
+            contact: contact.value.trim(),
+            message: message.value.trim(),
+            _subject: 'Заявка с сайта — ' + name.value.trim(),
+            source: 'Контактная форма'
+          })
+        : Promise.resolve(false);
+
+      send.then(function (ok) {
+        if (ok) {
+          if (submitBtn) submitBtn.textContent = 'Заявка отправлена ✓';
+          if (hint) hint.textContent = 'Спасибо! Мы свяжемся с вами в течение дня.';
+        } else {
+          if (submitBtn) submitBtn.textContent = 'Спасибо! Мы свяжемся с вами';
+          if (hint) {
+            hint.innerHTML = 'Заявка сохранена. Если почтовый клиент не открылся — напишите нам в ' +
+                             '<a href="https://t.me/shtolli_sculptor" target="_blank" rel="noopener" style="text-decoration:underline">Telegram</a> или ' +
+                             '<a href="https://wa.me/79384499311" target="_blank" rel="noopener" style="text-decoration:underline">WhatsApp</a>.';
+          }
+          try { window.location.href = mailto; } catch (err) {}
+        }
+        resetSoon();
+      });
     });
   })();
 
