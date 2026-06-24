@@ -211,9 +211,16 @@
 .hero__title {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: var(--fs-hero);
+  font-size: clamp(2rem, 0.9rem + 3.3vw, 3.6rem);   /* fallback for browsers without container queries */
   line-height: var(--lh-tight);
   letter-spacing: -0.01em;
+  overflow-wrap: normal;                            /* display heading: never break a word mid-letter */
+}
+/* Scale the hero title to ITS OWN column (not the viewport) so long Russian
+   words such as «художественное» always fit the line and never wrap mid-word. */
+@supports (font-size: 1cqi) {
+  .hero__copy { container-type: inline-size; }
+  .hero__title { font-size: clamp(2rem, 10cqi, 4.4rem); }
 }
 /* SplitText line clip wrapper */
 .hero__title .line-mask { overflow: hidden; display: block; }
