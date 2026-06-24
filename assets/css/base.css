@@ -9,6 +9,10 @@ html {
   -webkit-text-size-adjust: 100%;
   /* Lenis drives smooth scroll in JS; native fallback for no-JS / reduced motion */
   scroll-behavior: auto;
+  /* Root-level horizontal-overflow guard. `clip` (not `hidden`) leaves overflow-y
+     visible -> no scroll container is created, so position:sticky/fixed and Lenis
+     keep working while any horizontal bleed is clipped at the viewport edge. */
+  overflow-x: clip;
 }
 html.no-js, html.reduce-motion { scroll-behavior: smooth; }
 
@@ -23,7 +27,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: hidden;          /* fallback for browsers without overflow:clip */
+  overflow-wrap: break-word;   /* a long word / URL can never force horizontal scroll */
 }
 
 /* Lenis recommended setup */

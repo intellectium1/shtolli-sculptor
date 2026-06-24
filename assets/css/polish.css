@@ -6,7 +6,7 @@
    ============================================================ */
 
 /* ---------- Hero atmosphere: warm radial + animated grain ---------- */
-.hero { position: relative; isolation: isolate; }
+.hero { position: relative; isolation: isolate; overflow-x: clip; }
 .hero::before {
   content: '';
   position: absolute;
