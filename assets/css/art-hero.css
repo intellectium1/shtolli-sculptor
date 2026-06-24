@@ -1,0 +1,178 @@
+/* ============================================================
+   ШТОЛЛИ · shtolli.art — Art-gallery hero
+   Medallion centerpiece + foundry atmosphere + workshop block.
+   Compositor-friendly motion (transform/opacity), reduced-motion safe.
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.art-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-h) + clamp(1.5rem, 6vh, 3.5rem)) var(--gutter) clamp(3.5rem, 9vh, 6rem);
+  overflow: hidden;
+}
+
+/* warm foundry aura behind the medallion */
+.art-hero__atmos { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.art-hero__glow {
+  position: absolute;
+  left: 50%; top: 46%;
+  width: min(840px, 104vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center,
+    rgba(187, 134, 73, 0.34) 0%,
+    rgba(147, 103, 58, 0.15) 40%,
+    transparent 70%);
+  filter: blur(6px);
+  will-change: transform, opacity;
+  animation: art-glow 8s var(--ease-in-out) infinite;
+}
+.art-hero__halo {
+  position: absolute;
+  left: 50%; top: 46%;
+  width: min(520px, 84vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(138, 97, 53, 0.22);
+  box-shadow: 0 0 0 1px rgba(205, 180, 148, 0.08) inset;
+}
+@keyframes art-glow {
+  0%, 100% { opacity: 0.7;  transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* eyebrow centered with rules on both sides */
+.eyebrow--center { justify-content: center; }
+
+/* the medallion photo — hero centerpiece */
+.art-hero__medallion {
+  position: relative;
+  width: min(410px, 72vw);
+  margin: clamp(1.25rem, 3.5vh, 2.25rem) auto clamp(1.5rem, 3.5vh, 2.25rem);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  will-change: transform;
+  animation: art-rise 1s var(--ease-out-expo) both,
+             art-float 7s var(--ease-in-out) 1.2s infinite;
+}
+.art-hero__medallion img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+@keyframes art-rise {
+  from { opacity: 0; transform: translateY(36px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes art-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+.art-hero__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--fs-hero);
+  line-height: var(--lh-tight);
+  color: var(--c-ink);
+  margin: 0 0 0.45em;
+}
+.art-hero__lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-body);
+  color: var(--c-muted);
+  max-width: 46ch;
+  margin: 0 auto clamp(1.5rem, 3.5vh, 2.25rem);
+}
+.art-hero__actions { justify-content: center; }
+
+/* scroll cue */
+.art-hero__scroll {
+  position: absolute;
+  left: 50%; bottom: clamp(1rem, 3vh, 2rem);
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--c-faint);
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+}
+.art-hero__scroll-line {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(var(--c-bronze), transparent);
+  transform-origin: top center;
+  animation: art-scroll 2.2s var(--ease-in-out) infinite;
+}
+@keyframes art-scroll {
+  0%   { transform: scaleY(0);   opacity: 0; }
+  35%  { opacity: 1; }
+  100% { transform: scaleY(1);   opacity: 0; }
+}
+
+/* ---------- ABOUT + WORKSHOP ATMOSPHERE ---------- */
+.art-about__grid {
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  gap: clamp(1.75rem, 4vw, 3.75rem);
+  align-items: center;
+}
+.art-about__media {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-img);
+}
+.art-about__media img { display: block; width: 100%; height: auto; }
+.art-about__cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: linear-gradient(transparent, rgba(20, 14, 8, 0.82));
+  color: var(--c-on-dark);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+}
+.art-about__cap-k {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--fs-kicker);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--c-bronze-light);
+}
+
+@media (max-width: 760px) {
+  .art-hero__scroll { display: none; }
+  .art-about__grid { grid-template-columns: 1fr; }
+  .art-about__media { max-width: 440px; margin-inline: auto; }
+}
+
+/* ---------- Reduced motion ---------- */
+html.reduce-motion .art-hero__glow,
+html.reduce-motion .art-hero__medallion,
+html.reduce-motion .art-hero__scroll-line,
+html.motion-off .art-hero__glow,
+html.motion-off .art-hero__medallion,
+html.motion-off .art-hero__scroll-line {
+  animation: none !important;
+}
+html.reduce-motion .art-hero__medallion,
+html.motion-off .art-hero__medallion {
+  opacity: 1;
+  transform: none;
+}
