@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#211d17">
 
-  <title>ШТОЛЛИ — Скульптура и художественное литьё · Сочи</title>
-  <meta name="description" content="Мастерская художественного литья из бронзы и латуни в Сочи. Скульптуры, бюсты, барельефы, таблички и сувенирная продукция — по вашему эскизу или нашему.">
+  <title>Художественное литьё из бронзы · Скульптуры на заказ — ШТОЛЛИ, Сочи</title>
+  <meta name="description" content="Мастерская ШТОЛЛИ в Сочи: скульптуры, бюсты, барельефы и таблички из бронзы и латуни. Полный цикл — от эскиза до монтажа. Закажите расчёт бесплатно.">
   <meta name="author" content="Мастерская ШТОЛЛИ">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="ШТОЛЛИ">
-  <meta property="og:title" content="ШТОЛЛИ — Скульптура и художественное литьё">
-  <meta property="og:description" content="Древнее ремесло в современном прочтении: художественное литьё из бронзы и латуни. Сочи.">
+  <meta property="og:title" content="Художественное литьё из бронзы · Скульптуры на заказ — ШТОЛЛИ, Сочи">
+  <meta property="og:description" content="Мастерская ШТОЛЛИ в Сочи: скульптуры, бюсты, барельефы и таблички из бронзы и латуни. Полный цикл — от эскиза до монтажа. Закажите расчёт бесплатно.">
   <meta property="og:image" content="https://shtolli.ru/assets/img/og-preview.jpg">
 
   <link rel="canonical" href="https://shtolli.ru/">
@@ -53,24 +53,71 @@
   <link rel="stylesheet" href="assets/css/additions.css">
   <link rel="stylesheet" href="assets/css/polish.css">
 
-  <!-- Structured data -->
+  <!-- Structured data: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "ArtGallery"],
+    "@id": "https://shtolli.ru/#business",
     "name": "Мастерская ШТОЛЛИ",
-    "description": "Художественное литьё из бронзы и латуни.",
-    "image": "https://shtolli.ru/assets/img/hero-main.webp",
-    "telephone": "+7-938-44-99-311",
-    "email": "shtolik@list.ru",
+    "alternateName": "ШТОЛЛИ — художественное литьё",
+    "description": "Художественная мастерская полного цикла: скульптуры, бюсты, барельефы, таблички и сувениры из бронзы и латуни. Идея, 3D-модель, литьё, патинирование, монтаж.",
     "url": "https://shtolli.ru",
+    "telephone": "+79384499311",
+    "email": "shtolik@list.ru",
+    "image": ["https://shtolli.ru/assets/img/og-preview.jpg", "https://shtolli.ru/assets/img/hero-main.webp"],
+    "logo": "https://shtolli.ru/assets/img/og-preview.jpg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Первомайская, 26а",
+      "streetAddress": "ул. Первомайская, 26а",
       "addressLocality": "Сочи",
+      "addressRegion": "Краснодарский край",
       "addressCountry": "RU"
     },
-    "sameAs": ["https://t.me/shtolli_sculptor", "https://wa.me/79384499311"]
+    "geo": {"@type": "GeoCoordinates", "latitude": 43.5855, "longitude": 39.7232},
+    "hasMap": "https://yandex.ru/maps/?text=%D0%A1%D0%BE%D1%87%D0%B8%2C+%D1%83%D0%BB.+%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%B0%D1%8F+26%D0%B0",
+    "priceRange": "₽₽",
+    "currenciesAccepted": "RUB",
+    "areaServed": [
+      {"@type": "City", "name": "Сочи"},
+      {"@type": "City", "name": "Адлер"},
+      {"@type": "AdministrativeArea", "name": "Краснодарский край"},
+      {"@type": "Country", "name": "Россия"}
+    ],
+    "knowsAbout": ["Художественное литьё из бронзы", "Художественное литьё из латуни", "Изготовление скульптур", "Патинирование металла", "3D-моделирование скульптур", "Мемориальные таблички", "Портретные бюсты", "Барельефы"],
+    "sameAs": [
+      "https://t.me/shtolli_sculptor",
+      "https://wa.me/79384499311",
+      "https://www.instagram.com/shtolli_sculptor/",
+      "https://litejnaja-masterskaja-shtolli.clients.site/",
+      "https://shtolli.art"
+    ]
+  }
+  </script>
+  <!-- Structured data: Organization + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://shtolli.ru/#organization",
+        "name": "Мастерская ШТОЛЛИ",
+        "url": "https://shtolli.ru",
+        "logo": "https://shtolli.ru/assets/img/og-preview.jpg",
+        "contactPoint": [{"@type": "ContactPoint", "telephone": "+79384499311", "contactType": "customer service", "availableLanguage": "Russian", "areaServed": "RU"}],
+        "sameAs": ["https://t.me/shtolli_sculptor", "https://www.instagram.com/shtolli_sculptor/", "https://wa.me/79384499311", "https://litejnaja-masterskaja-shtolli.clients.site/", "https://shtolli.art"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://shtolli.ru/#website",
+        "url": "https://shtolli.ru",
+        "name": "ШТОЛЛИ — Скульптура и художественное литьё",
+        "description": "Мастерская художественного литья из бронзы и латуни в Сочи",
+        "publisher": {"@id": "https://shtolli.ru/#organization"},
+        "inLanguage": "ru-RU"
+      }
+    ]
   }
   </script>
 </head>

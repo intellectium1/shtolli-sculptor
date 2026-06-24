@@ -202,9 +202,12 @@ def main():
         if mode == "files":
             domain = sys.argv[2] if len(sys.argv) > 2 else "ru"
             target = "www/shtolli.ru" if domain == "ru" else "www/shtolli.art"
+            rename = {"gallery.html": "index.html", "sitemap-art.xml": "sitemap.xml",
+                      "robots-art.txt": "robots.txt"} if domain == "art" else {}
             print("== files -> %s ==" % target)
             for rel in sys.argv[3:]:
-                dep.put(os.path.join(LOCAL_ROOT, rel.replace("/", os.sep)), target + "/" + rel)
+                dest = rename.get(rel, rel)
+                dep.put(os.path.join(LOCAL_ROOT, rel.replace("/", os.sep)), target + "/" + dest)
         if mode == "html":
             print("== HTML + icons only (both domains) ==")
             deploy_ru(dep, only_html=True)
