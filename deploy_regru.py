@@ -17,10 +17,15 @@ Usage (PowerShell):
     python deploy_regru.py ru         # only shtolli.ru
     python deploy_regru.py art        # only shtolli.art (upload)
     python deploy_regru.py art-clean  # only remove stale files from shtolli.art
+
+reg.ru's SFTP drops idle/long connections, so every transfer is retried with a
+fresh reconnect on EOFError / SSHException.
 """
 import os
-import sys
+import socket
 import stat as statmod
+import sys
+import time
 
 import paramiko
 
@@ -49,6 +54,8 @@ ART_PURGE = [
     "ftp_ls.py", "ftp_ls_www.py", "ftp_test.py", "upload_htaccess.py",
 ]
 
+TRANSIENT = (EOFError, paramiko.SSHException, OSError, socket.error)
+
 
 def excluded(rel):
     parts = rel.split("/")
@@ -64,42 +71,76 @@ def excluded(rel):
     return False
 
 
-def connect():
-    t = paramiko.Transport((HOST, PORT))
-    t.connect(username=USER, password=PASS)
-    return t, paramiko.SFTPClient.from_transport(t)
+class Deployer:
+    def __init__(self):
+        self.t = None
+        self.sftp = None
+        self.connect()
 
-
-def ensure_dir(sftp, d):
-    cur = ""
-    for p in d.split("/"):
-        if not p:
-            continue
-        cur = cur + "/" + p if cur else p
+    def connect(self):
+        self.t = paramiko.Transport((HOST, PORT))
+        self.t.banner_timeout = 30
+        self.t.connect(username=USER, password=PASS)
         try:
-            sftp.stat(cur)
+            self.t.set_keepalive(15)
+        except Exception:
+            pass
+        self.sftp = paramiko.SFTPClient.from_transport(self.t)
+
+    def reconnect(self):
+        for c in (self.sftp, self.t):
+            try:
+                if c:
+                    c.close()
+            except Exception:
+                pass
+        time.sleep(2)
+        self.connect()
+
+    def ensure_dir(self, d):
+        cur = ""
+        for p in d.split("/"):
+            if not p:
+                continue
+            cur = cur + "/" + p if cur else p
+            try:
+                self.sftp.stat(cur)
+            except IOError:
+                self.sftp.mkdir(cur)
+
+    def put(self, local, remote, retries=6):
+        last = None
+        for i in range(retries):
+            try:
+                self.ensure_dir("/".join(remote.split("/")[:-1]))
+                self.sftp.put(local, remote)
+                print("  put", remote)
+                return
+            except TRANSIENT as e:
+                last = e
+                print("  retry(%d) %s [%s]" % (i + 1, remote, type(e).__name__))
+                self.reconnect()
+        raise last
+
+    def rmtree(self, path):
+        try:
+            st = self.sftp.stat(path)
         except IOError:
-            sftp.mkdir(cur)
+            return
+        if statmod.S_ISDIR(st.st_mode):
+            for n in self.sftp.listdir(path):
+                self.rmtree(path + "/" + n)
+            self.sftp.rmdir(path)
+        else:
+            self.sftp.remove(path)
+        print("  removed", path)
 
-
-def put(sftp, local, remote):
-    ensure_dir(sftp, "/".join(remote.split("/")[:-1]))
-    sftp.put(local, remote)
-    print("  put", remote)
-
-
-def rmtree(sftp, path):
-    try:
-        st = sftp.stat(path)
-    except IOError:
-        return
-    if statmod.S_ISDIR(st.st_mode):
-        for n in sftp.listdir(path):
-            rmtree(sftp, path + "/" + n)
-        sftp.rmdir(path)
-    else:
-        sftp.remove(path)
-    print("  removed", path)
+    def close(self):
+        try:
+            self.sftp.close()
+            self.t.close()
+        except Exception:
+            pass
 
 
 def walk_files():
@@ -115,18 +156,20 @@ def walk_files():
             yield root, f, rel
 
 
-def deploy_ru(sftp):
+def deploy_ru(dep, only_html=False):
     target = "www/shtolli.ru"
-    ensure_dir(sftp, target)
+    dep.ensure_dir(target)
     for root, f, rel in walk_files():
         if excluded(rel):
             continue
-        put(sftp, os.path.join(root, f), target + "/" + rel)
+        if only_html and rel.startswith("assets/"):
+            continue
+        dep.put(os.path.join(root, f), target + "/" + rel)
 
 
-def deploy_art(sftp):
+def deploy_art(dep, only_html=False):
     target = "www/shtolli.art"
-    ensure_dir(sftp, target)
+    dep.ensure_dir(target)
     for root, f, rel in walk_files():
         if excluded(rel):
             continue
@@ -134,38 +177,43 @@ def deploy_art(sftp):
             continue
         if rel in ART_EXCLUDE_ROOT_FILES:
             continue
-        put(sftp, os.path.join(root, f), target + "/" + rel)
+        if only_html and rel.startswith("assets/"):
+            continue
+        dep.put(os.path.join(root, f), target + "/" + rel)
     # Art-specific variants.
-    put(sftp, os.path.join(LOCAL_ROOT, "gallery.html"), target + "/index.html")
-    put(sftp, os.path.join(LOCAL_ROOT, "robots-art.txt"), target + "/robots.txt")
-    put(sftp, os.path.join(LOCAL_ROOT, "sitemap-art.xml"), target + "/sitemap.xml")
+    dep.put(os.path.join(LOCAL_ROOT, "gallery.html"), target + "/index.html")
+    dep.put(os.path.join(LOCAL_ROOT, "robots-art.txt"), target + "/robots.txt")
+    dep.put(os.path.join(LOCAL_ROOT, "sitemap-art.xml"), target + "/sitemap.xml")
 
 
-def cleanup_art(sftp):
+def cleanup_art(dep):
     base = "www/shtolli.art"
     for p in ART_PURGE:
-        rmtree(sftp, base + "/" + p)
+        dep.rmtree(base + "/" + p)
 
 
 def main():
     if not (HOST and USER and PASS):
         sys.exit("Set REGRU_HOST, REGRU_USER and REGRU_PASS environment variables first.")
     mode = sys.argv[1] if len(sys.argv) > 1 else "all"
-    t, sftp = connect()
+    dep = Deployer()
     print("Connected to", HOST)
     try:
+        if mode == "html":
+            print("== HTML + icons only (both domains) ==")
+            deploy_ru(dep, only_html=True)
+            deploy_art(dep, only_html=True)
         if mode in ("ru", "all"):
             print("== shtolli.ru (full site) ==")
-            deploy_ru(sftp)
+            deploy_ru(dep)
         if mode in ("art", "all"):
             print("== shtolli.art (gallery + blog) ==")
-            deploy_art(sftp)
+            deploy_art(dep)
         if mode in ("art-clean", "clean", "all"):
             print("== shtolli.art cleanup (remove stale/dev files) ==")
-            cleanup_art(sftp)
+            cleanup_art(dep)
     finally:
-        sftp.close()
-        t.close()
+        dep.close()
     print("DONE:", mode)
 
 
