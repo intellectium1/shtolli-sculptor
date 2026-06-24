@@ -610,7 +610,7 @@ a.contact-line:hover { opacity: 0.78; }
 }
 .contact-line__value { font-family: var(--font-serif); font-size: 1.625rem; color: var(--c-cream); }
 
-.footer__socials { display: flex; gap: 0.875rem; margin-top: 2.375rem; }
+.footer__socials { display: flex; flex-wrap: wrap; gap: 0.875rem; margin-top: 2.375rem; }
 .chip {
   display: inline-flex;
   align-items: center;
