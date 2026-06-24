@@ -29,12 +29,11 @@
     <FilesMatch "\.(webp|png|jpg|jpeg|gif|ico)$">
         Header set Cache-Control "public, max-age=15552000"
     </FilesMatch>
-    # HSTS — ТОЛЬКО для доменов с валидным сертификатом.
-    # shtolli.art = валидный GlobalSign DV. shtolli.ru до активации DomainSSL
-    # отдаёт self-signed cert — HSTS там включать НЕЛЬЗЯ (при невалидном
-    # сертификате браузер намертво заблокирует сайт без возможности обхода).
-    SetEnvIfNoCase Host "shtolli\.art" enable_hsts
-    Header always set Strict-Transport-Security "max-age=86400; includeSubDomains" env=enable_hsts
+    # HSTS — оба домена на валидных сертификатах (shtolli.art = GlobalSign DV,
+    # shtolli.ru = Let's Encrypt с авто-продлением). Старт с 1 дня ради
+    # безопасности на случай сбоя продления; можно поднять до 31536000 + preload,
+    # когда авто-продление подтвердится стабильным.
+    Header always set Strict-Transport-Security "max-age=86400; includeSubDomains"
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
