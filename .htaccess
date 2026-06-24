@@ -45,6 +45,8 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # ACME (Let's Encrypt) HTTP-01 проверку НЕ редиректим — иначе выпуск сертификата может не пройти
+    RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/ [NC]
     # http → https
     RewriteCond %{ENV:HTTPS} !on
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
