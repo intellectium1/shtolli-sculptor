@@ -625,6 +625,7 @@ a.contact-line:hover { opacity: 0.78; }
               transform var(--dur) var(--ease-out-expo);
 }
 .chip:hover { background: var(--c-bronze); border-color: var(--c-bronze); transform: translateY(-2px); }
+.chip--yandex { border-color: var(--c-bronze); }
 
 /* ---- Form ---- */
 .form { display: flex; flex-direction: column; gap: 1rem; }

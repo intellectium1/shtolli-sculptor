@@ -5,46 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#211d17">
 
-  <title>ШТОЛЛИ — Скульптура и художественное литьё · Сочи</title>
-  <meta name="description" content="Мастерская художественного литья из бронзы и латуни в Сочи. Скульптуры, бюсты, барельефы, таблички и сувенирная продукция — по вашему эскизу или нашему.">
+  <title>Арт-галерея ШТОЛЛИ — художественное литьё из бронзы и латуни · Сочи</title>
+  <meta name="description" content="Галерея работ мастерской ШТОЛЛИ: скульптуры, бюсты, барельефы и арт-объекты из бронзы и латуни. Сочи. Авторский блог о художественном литье.">
   <meta name="author" content="Мастерская ШТОЛЛИ">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="ШТОЛЛИ">
-  <meta property="og:title" content="ШТОЛЛИ — Скульптура и художественное литьё">
-  <meta property="og:description" content="Древнее ремесло в современном прочтении: художественное литьё из бронзы и латуни. Сочи.">
-  <meta property="og:image" content="https://shtolli.ru/assets/img/og-preview.jpg">
+  <meta property="og:title" content="Арт-галерея ШТОЛЛИ — художественное литьё">
+  <meta property="og:description" content="Скульптуры и арт-объекты из бронзы и латуни. Галерея работ и авторский блог мастерской ШТОЛЛИ.">
+  <meta property="og:image" content="https://shtolli.art/assets/img/og-preview.jpg">
+  <meta property="og:url" content="https://shtolli.art/">
 
-  <link rel="canonical" href="https://shtolli.ru/">
+  <link rel="canonical" href="https://shtolli.art/">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Progressive enhancement: flag JS + reduced-motion BEFORE paint to avoid FOUC and dead-hidden content -->
   <script>
     (function () {
       var d = document.documentElement;
-      d.classList.remove('no-js');
-      d.classList.add('js');
-      try {
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          d.classList.add('reduce-motion');
-        }
-      } catch (e) {}
+      d.classList.remove('no-js'); d.classList.add('js');
+      try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduce-motion'); } catch (e) {}
     })();
   </script>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Speed up the LCP hero image fetch -->
-  <link rel="preload" as="image" href="assets/img/hero-main.webp" fetchpriority="high">
-
-  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
@@ -57,18 +48,18 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Мастерская ШТОЛЛИ",
-    "description": "Художественное литьё из бронзы и латуни.",
-    "image": "https://shtolli.ru/assets/img/hero-main.webp",
+    "description": "Художественное литьё из бронзы и латуни. Арт-галерея работ.",
+    "image": "https://shtolli.art/assets/img/og-preview.jpg",
     "telephone": "+7-938-44-99-311",
     "email": "shtolik@list.ru",
-    "url": "https://shtolli.ru",
+    "url": "https://shtolli.art",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Первомайская, 26а",
       "addressLocality": "Сочи",
       "addressCountry": "RU"
     },
-    "sameAs": ["https://t.me/shtolli_sculptor", "https://wa.me/79384499311"]
+    "sameAs": ["https://t.me/shtolli_sculptor", "https://wa.me/79384499311", "https://shtolli.ru"]
   }
   </script>
 </head>
@@ -87,17 +78,6 @@
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/110110391" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
-  <!-- ============ PRELOADER (bronze pour) ============ -->
-  <div class="preloader" id="preloader" aria-hidden="true">
-    <div class="preloader__inner">
-      <div class="preloader__mark">
-        <span class="preloader__word">ШТОЛЛИ</span>
-        <span class="preloader__fill" id="preloader-fill">ШТОЛЛИ</span>
-      </div>
-      <div class="preloader__bar"><span class="preloader__bar-fill" id="preloader-bar"></span></div>
-      <div class="preloader__caption">Художественное литьё · Сочи</div>
-    </div>
-  </div>
 
   <a href="#main" class="skip-link">Перейти к содержимому</a>
 
@@ -107,339 +87,83 @@
       <div class="nav__bg" id="nav-bg"></div>
       <div class="nav__inner">
         <a href="#top" class="nav__brand" data-magnetic data-lenis-target>ШТОЛЛИ</a>
-
         <ul class="nav__links" id="nav-links">
-          <li><a href="#about" class="nav__link" data-lenis-target>О&nbsp;нас</a></li>
+          <li><a href="#about"    class="nav__link" data-lenis-target>О&nbsp;нас</a></li>
           <li><a href="#services" class="nav__link" data-lenis-target>Услуги</a></li>
-          <li><a href="#gallery" class="nav__link" data-lenis-target>Галерея</a></li>
+          <li><a href="#gallery"  class="nav__link nav__link--active" data-lenis-target>Галерея</a></li>
           <li><a href="blog.html" class="nav__link">Блог</a></li>
           <li><a href="#contacts" class="nav__link" data-lenis-target>Контакты</a></li>
         </ul>
-
-        <a href="quiz.html" class="btn btn--solid nav__cta">Рассчитать заказ</a>
-
+        <a href="https://shtolli.ru/quiz.html" class="btn btn--solid nav__cta">Рассчитать заказ</a>
         <button class="nav__burger" id="nav-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </nav>
 
-    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <nav class="mobile-menu__inner" aria-label="Мобильная навигация">
-        <a href="#about" class="mobile-menu__link" data-lenis-target>О&nbsp;нас</a>
+        <a href="#about"    class="mobile-menu__link" data-lenis-target>О&nbsp;нас</a>
         <a href="#services" class="mobile-menu__link" data-lenis-target>Услуги</a>
-        <a href="#gallery" class="mobile-menu__link" data-lenis-target>Галерея</a>
+        <a href="#gallery"  class="mobile-menu__link" data-lenis-target>Галерея</a>
+        <a href="blog.html" class="mobile-menu__link">Блог</a>
         <a href="#contacts" class="mobile-menu__link" data-lenis-target>Контакты</a>
-        <a href="quiz.html" class="btn btn--solid mobile-menu__cta">Рассчитать заказ</a>
+        <a href="https://shtolli.ru/quiz.html" class="btn btn--solid mobile-menu__cta">Рассчитать заказ</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- ============ HERO ============ -->
-    <section id="top" class="hero" aria-labelledby="hero-heading">
-      <div class="container hero__grid">
-        <div class="hero__copy">
-          <div class="eyebrow" data-reveal>
-            <span class="eyebrow__rule"></span>
-            <span class="eyebrow__text">Сочи · Мастерская художественного литья</span>
-          </div>
-
-          <h1 id="hero-heading" class="hero__title" data-split>
-            Скульптура<br>
-            и&nbsp;художественное<br>
-            <span class="accent-italic">литьё</span>
-          </h1>
-
-          <p class="hero__lead" data-reveal data-reveal-delay="0.2">
-            Скульптуры, бюсты, барельефы, таблички и&nbsp;сувенирная продукция
-            из&nbsp;бронзы и&nbsp;латуни — по&nbsp;вашему эскизу или разработаем сами.
-            Древнее ремесло в&nbsp;современном прочтении.
-          </p>
-
-          <div class="hero__actions" data-reveal data-reveal-delay="0.32">
-            <a href="quiz.html" class="btn btn--solid btn--lg" data-magnetic>Рассчитать заказ</a>
-            <a href="#gallery" class="btn btn--ghost btn--lg" data-magnetic data-lenis-target>Смотреть работы</a>
-          </div>
-        </div>
-
-        <div class="hero__media">
-          <figure class="hero__main" data-parallax="0.12">
-            <div class="reveal-clip" data-reveal-clip>
-              <img src="assets/img/hero-main.webp" width="1080" height="1350"
-                   alt="Художественная скульптура мастерской ШТОЛЛИ"
-                   fetchpriority="high" decoding="async">
-            </div>
-          </figure>
-        </div>
-      </div>
-
-      <a href="#about" class="hero__scroll" data-lenis-target aria-label="Прокрутить вниз">
-        <span class="hero__scroll-line"></span>
-        <span class="hero__scroll-text">Листайте</span>
-      </a>
-    </section>
-
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" data-reveal aria-hidden="true">
-      <div class="marquee__track" id="marquee-track">
-        <!-- group repeated for seamless loop; JS clones if needed -->
-        <div class="marquee__group">
-          <span class="marquee__item">Бронза</span><span class="marquee__dot"></span>
-          <span class="marquee__item">Латунь</span><span class="marquee__dot"></span>
-          <span class="marquee__item">Мельхиор</span><span class="marquee__dot"></span>
-          <span class="marquee__item">Мрамор</span><span class="marquee__dot"></span>
-          <span class="marquee__item">Патинирование</span><span class="marquee__dot"></span>
-          <span class="marquee__item">3D&#8209;моделирование</span><span class="marquee__dot"></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ TRUST STRIP ============ -->
-    <section class="trust-strip" aria-label="Доверительные факты о мастерской">
+    <!-- ============ INTRO ============ -->
+    <section id="top" class="section" style="padding-top: clamp(7rem, 14vh, 11rem)">
       <div class="container">
-        <div class="trust-strip__grid">
-          <div class="trust-item">
-            <span class="trust-item__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </span>
-            <span class="trust-item__value">10+ лет</span>
-            <span class="trust-item__label">опыта в&nbsp;литье</span>
-          </div>
-          <div class="trust-item">
-            <span class="trust-item__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4v10l8 4 8-4z"/><path d="M4 7l8 4 8-4"/><line x1="12" y1="11" x2="12" y2="21"/></svg>
-            </span>
-            <span class="trust-item__value">100+</span>
-            <span class="trust-item__label">завершённых проектов</span>
-          </div>
-          <div class="trust-item">
-            <span class="trust-item__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10l9 5 9-5V7z"/><path d="M12 22V12"/><path d="M3 7l9 5 9-5"/></svg>
-            </span>
-            <span class="trust-item__value">Полный цикл</span>
-            <span class="trust-item__label">от&nbsp;эскиза до&nbsp;монтажа</span>
-          </div>
-          <div class="trust-item">
-            <span class="trust-item__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <span class="trust-item__value">По&nbsp;всей России</span>
-            <span class="trust-item__label">отправка из&nbsp;Сочи</span>
-          </div>
+        <div class="eyebrow" data-reveal>
+          <span class="eyebrow__rule"></span>
+          <span class="eyebrow__text">Сочи · Художественное литьё</span>
+        </div>
+        <h1 class="h2" data-reveal data-reveal-delay="0.08">Арт-галерея ШТОЛЛИ</h1>
+        <p class="lead" data-reveal data-reveal-delay="0.16">
+          Все работы мастерской в&nbsp;одном месте — скульптуры, бюсты, барельефы
+          и&nbsp;арт-объекты из&nbsp;бронзы и&nbsp;латуни.
+        </p>
+        <div class="hero__actions" data-reveal data-reveal-delay="0.24">
+          <a href="#gallery" class="btn btn--solid btn--lg" data-magnetic data-lenis-target>Смотреть работы</a>
+          <a href="blog.html" class="btn btn--ghost btn--lg" data-magnetic>Читать блог</a>
         </div>
       </div>
     </section>
 
     <!-- ============ ABOUT ============ -->
-    <section id="about" class="section about" aria-labelledby="about-heading">
-      <div class="container about__grid">
-        <div class="about__copy">
-          <div class="kicker" data-reveal>О&nbsp;мастерской</div>
-          <h2 id="about-heading" class="h2" data-reveal data-reveal-delay="0.08">
-            Даже в&nbsp;древнем ремесле можно идти в&nbsp;ногу со&nbsp;временем
-          </h2>
-          <p class="lead" data-reveal data-reveal-delay="0.16">
-            Штолли — мастерская художественного литья в&nbsp;Сочи.
-            Мы изготавливаем скульптуры, бюсты, таблички, барельефы и&nbsp;сувенирную продукцию
-            из&nbsp;бронзы и&nbsp;латуни.
-          </p>
-          <p class="lead" data-reveal data-reveal-delay="0.24">
-            Выполним любое изделие по&nbsp;вашему эскизу — или разработаем эскиз сами.
-            Основная концепция нашей работы — современный подход: компьютерные технологии,
-            3D&#8209;моделирование и&nbsp;креатив на&nbsp;службе классического литья.
-          </p>
-
-          <ul class="about-points" data-reveal data-reveal-delay="0.32">
-            <li class="about-point">
-              <span class="about-point__ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 4 21 9 16 9"/></svg>
-              </span>
-              <span class="about-point__txt">
-                <b class="about-point__title">Полный цикл под ключ</b>
-                От&nbsp;эскиза и&nbsp;3D&#8209;модели до&nbsp;отливки, патины и&nbsp;монтажа
-              </span>
-            </li>
-            <li class="about-point">
-              <span class="about-point__ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 3c-3.5 4-6 7-6 10a6 6 0 0 0 12 0c0-3-2.5-6-6-10z"/></svg>
-              </span>
-              <span class="about-point__txt">
-                <b class="about-point__title">Бронза и&nbsp;латунь</b>
-                Любая патина&nbsp;— от&nbsp;тёмной классики до&nbsp;золота
-              </span>
-            </li>
-            <li class="about-point">
-              <span class="about-point__ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><polyline points="9 14 11 16 15 12"/></svg>
-              </span>
-              <span class="about-point__txt">
-                <b class="about-point__title">Сроки от&nbsp;2–4 недель</b>
-                Точный расчёт стоимости и&nbsp;срока по&nbsp;вашей задаче
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="about__media">
-          <figure class="about__photo" data-parallax="0.09">
-            <div class="reveal-clip" data-reveal-clip data-reveal-delay="0.12">
-              <img src="assets/img/about-master.webp" width="960" height="960"
-                   alt="Мастер за работой в мастерской ШТОЛЛИ" loading="lazy" decoding="async">
-            </div>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section id="services" class="section services" aria-labelledby="services-heading">
+    <section id="about" class="section" style="padding-top:0">
       <div class="container">
-        <div class="section__head">
-          <div>
-            <div class="kicker" data-reveal>Услуги</div>
-            <h2 id="services-heading" class="h2" data-reveal data-reveal-delay="0.08">Что&nbsp;мы&nbsp;делаем</h2>
-          </div>
-          <p class="section__intro" data-reveal data-reveal-delay="0.14">
-            От&nbsp;единичной скульптуры до&nbsp;серийной фурнитуры — полный цикл
-            от&nbsp;эскиза до&nbsp;готовой отливки.
-          </p>
-        </div>
-
-        <div class="services__grid">
-          <a href="services/sculpture.html" class="service-card" data-reveal data-tilt>
-            <div class="service-card__num">01</div>
-            <h3 class="service-card__title">Изготовление скульптур</h3>
-            <p class="service-card__desc">Скульптуры, бюсты и&nbsp;барельефы по&nbsp;вашему эскизу или нашему — от&nbsp;идеи и&nbsp;3D&#8209;модели до&nbsp;готовой отливки и&nbsp;патинирования.</p>
-            <div class="service-card__foot">
-              <span class="service-card__price">Рассчитывается индивидуально</span>
-              <span class="service-card__more">Подробнее&nbsp;→</span>
-            </div>
-          </a>
-
-          <a href="services/lityo.html" class="service-card" data-reveal data-reveal-delay="0.08" data-tilt>
-            <div class="service-card__num">02</div>
-            <h3 class="service-card__title">Художественное литьё</h3>
-            <p class="service-card__desc">Литьё из&nbsp;бронзы, латуни и&nbsp;других металлов: памятные таблички, фурнитура, наградные знаки и&nbsp;сувенирная продукция.</p>
-            <div class="service-card__foot">
-              <span class="service-card__price">от&nbsp;4&nbsp;000&nbsp;₽ за&nbsp;кг</span>
-              <span class="service-card__more">Подробнее&nbsp;→</span>
-            </div>
-          </a>
-
-          <a href="services/uslugi.html" class="service-card" data-reveal data-reveal-delay="0.16" data-tilt>
-            <div class="service-card__num">03</div>
-            <h3 class="service-card__title">Услуги скульптора</h3>
-            <p class="service-card__desc">Лепка, 3D&#8209;моделирование и&nbsp;подготовка форм. Современный подход к&nbsp;древнему ремеслу — технологии и&nbsp;креатив.</p>
-            <div class="service-card__foot">
-              <span class="service-card__price">По&nbsp;запросу</span>
-              <span class="service-card__more">Подробнее&nbsp;→</span>
-            </div>
-          </a>
-        </div>
+        <div class="kicker" data-reveal>О мастерской</div>
+        <h2 class="h2" data-reveal data-reveal-delay="0.08">Древнее ремесло<br>в&nbsp;современном прочтении</h2>
+        <p class="lead" data-reveal data-reveal-delay="0.16">
+          Мастерская ШТОЛЛИ создаёт скульптуры, бюсты, барельефы, таблички и&nbsp;арт-объекты
+          из&nbsp;бронзы и&nbsp;латуни — по&nbsp;вашему эскизу или разработаем сами. Полный цикл:
+          от&nbsp;идеи и&nbsp;3D-модели до&nbsp;литья, патинирования и&nbsp;монтажа.
+        </p>
       </div>
     </section>
 
-    <!-- ============ FEATURED PROJECTS (slider) ============ -->
-    <section class="section projects" aria-labelledby="projects-heading">
+    <!-- ============ SERVICES (teaser) ============ -->
+    <section id="services" class="section" style="padding-top:0">
       <div class="container">
-        <div class="kicker" data-reveal>Избранные проекты</div>
-        <h2 id="projects-heading" class="h2 projects__title" data-reveal data-reveal-delay="0.08">Работы, которыми гордимся</h2>
-
-        <div class="projects-slider-wrap">
-          <div class="projects-slider" id="projects-slider" aria-label="Избранные проекты" role="region" aria-roledescription="карусель">
-            <div class="projects-slider__track" id="projects-slider-track">
-
-              <div class="projects-slide">
-                <div class="projects-slide__img-wrap">
-                  <img src="assets/img/pero.webp" width="800" height="1349"
-                       alt="Перо для памятника «Книга» — бронза, 1,5 м" loading="lazy" decoding="async">
-                </div>
-                <div class="projects-slide__info">
-                  <span class="projects-slide__num">01 / 05</span>
-                  <h3 class="projects-slide__title">Перо для памятника «Книга»</h3>
-                  <p class="projects-slide__meta">Бронза · в&nbsp;память А.&nbsp;А.&nbsp;Бестужева-Марлинского</p>
-                  <p class="projects-slide__desc">Художественная деталь памятника — бронзовое перо высотой 1,5&nbsp;м. Работа велась по&nbsp;архивным материалам с&nbsp;точным воссозданием исторического образа писателя. Монтаж выполнен на&nbsp;открытии памятника в&nbsp;Сочи.</p>
-                </div>
-              </div>
-
-              <div class="projects-slide">
-                <div class="projects-slide__img-wrap">
-                  <img src="assets/img/nagrady.webp" width="1158" height="1400"
-                       alt="Памятные таблички «Новая волна 2021»" loading="lazy" decoding="async">
-                </div>
-                <div class="projects-slide__info">
-                  <span class="projects-slide__num">02 / 05</span>
-                  <h3 class="projects-slide__title">Памятные таблички «Новая&nbsp;волна&nbsp;2021»</h3>
-                  <p class="projects-slide__meta">Международный конкурс молодых исполнителей · Сочи</p>
-                  <p class="projects-slide__desc">Серия именных бронзовых знаков для победителей международного конкурса «Новая волна». Каждая табличка — уникальная работа с&nbsp;гравировкой имени лауреата и&nbsp;логотипом фестиваля в&nbsp;технике художественного литья.</p>
-                </div>
-              </div>
-
-              <div class="projects-slide">
-                <div class="projects-slide__img-wrap">
-                  <img src="assets/img/proj-vesy.webp" width="699" height="813"
-                       alt="Весы для Адлерского рынка — интерактивный арт-объект из чёрного металла" loading="lazy" decoding="async">
-                </div>
-                <div class="projects-slide__info">
-                  <span class="projects-slide__num">03 / 05</span>
-                  <h3 class="projects-slide__title">Весы для Адлерского Центрального рынка</h3>
-                  <p class="projects-slide__meta">Интерактивный арт-объект · чёрный металл · 2,5&nbsp;м</p>
-                  <p class="projects-slide__desc">Большой интерактивный арт-объект для рынка: действующие весы из&nbsp;чёрного металла, на&nbsp;которые можно встать и&nbsp;взвеситься. Конструкцию придумали, собрали и&nbsp;смонтировали с&nbsp;нуля по&nbsp;авторскому эскизу&nbsp;— это ручная металлоработа, не&nbsp;литьё.</p>
-                </div>
-              </div>
-
-              <div class="projects-slide">
-                <div class="projects-slide__img-wrap">
-                  <img src="assets/img/nikolay.webp" width="911" height="1366"
-                       alt="Скульптура Николаю Чудотворцу — бронза, 1 м" loading="lazy" decoding="async">
-                </div>
-                <div class="projects-slide__info">
-                  <span class="projects-slide__num">04 / 05</span>
-                  <h3 class="projects-slide__title">Скульптура Николаю Чудотворцу</h3>
-                  <p class="projects-slide__meta">Бронза, патинирование · 1&nbsp;м</p>
-                  <p class="projects-slide__desc">Бронзовая скульптура православного святого, выполненная по&nbsp;авторскому эскизу. Традиционное патинирование даёт глубокий тёмно-коричневый тон. Установлена в&nbsp;частной часовне. Вес отливки&nbsp;— около 40&nbsp;кг.</p>
-                </div>
-              </div>
-
-              <div class="projects-slide">
-                <div class="projects-slide__img-wrap">
-                  <img src="assets/img/byust.webp" width="930" height="1400"
-                       alt="Барельеф академика Г. А. Илизарова" loading="lazy" decoding="async">
-                </div>
-                <div class="projects-slide__info">
-                  <span class="projects-slide__num">05 / 05</span>
-                  <h3 class="projects-slide__title">Барельеф академика Г.&nbsp;А.&nbsp;Илизарова</h3>
-                  <p class="projects-slide__meta">Медицинский центр · Махачкала</p>
-                  <p class="projects-slide__desc">Портретный барельеф выполнен по&nbsp;архивным фотографиям с&nbsp;высоким портретным сходством. Материал&nbsp;— литьевая бронза. Установлен на&nbsp;фасаде клиники, увековечивая вклад выдающегося врача-ортопеда.</p>
-                </div>
-              </div>
-
-            </div><!-- /track -->
-          </div><!-- /slider -->
-
-          <div class="projects-slider__bar" aria-hidden="true"><span class="projects-slider__bar-fill" id="slider-bar-fill"></span></div>
-          <div class="projects-slider__controls">
-            <div class="projects-slider__count" aria-hidden="true"><b id="slider-cur">01</b> / <span id="slider-total">05</span></div>
-            <div class="projects-slider__dots" id="slider-dots" role="group" aria-label="Навигация по слайдам"></div>
-            <div class="projects-slider__btns">
-              <button class="projects-slider__btn" id="slider-prev" aria-label="Предыдущий проект">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-              </button>
-              <button class="projects-slider__btn" id="slider-next" aria-label="Следующий проект">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-              </button>
-            </div>
-          </div>
-          <span class="visually-hidden" id="slider-live" aria-live="polite"></span>
+        <div class="kicker" data-reveal>Услуги</div>
+        <h2 class="h2" data-reveal data-reveal-delay="0.08">Что мы&nbsp;создаём</h2>
+        <p class="lead" data-reveal data-reveal-delay="0.16">
+          Изготовление скульптур&nbsp;· художественное литьё&nbsp;· услуги скульптора.
+          Подробное описание услуг, цен и&nbsp;этапов работы&nbsp;— на&nbsp;основном сайте.
+        </p>
+        <div class="hero__actions" data-reveal data-reveal-delay="0.24">
+          <a href="https://shtolli.ru/services/uslugi.html" class="btn btn--ghost btn--lg" data-magnetic>Подробнее об&nbsp;услугах&nbsp;→</a>
+          <a href="https://shtolli.ru/quiz.html" class="btn btn--solid btn--lg" data-magnetic>Рассчитать заказ</a>
         </div>
       </div>
     </section>
 
-    <!-- ============ GALLERY ============ -->
-    <section id="gallery" class="section gallery" aria-labelledby="gallery-heading">
+<section id="gallery" class="section gallery" aria-labelledby="gallery-heading">
       <div class="container">
         <div class="section__head">
           <div>
@@ -681,100 +405,6 @@
       </div>
     </section>
 
-    <!-- ============ INSTAGRAM ============ -->
-    <section class="section insta-section" aria-labelledby="insta-heading">
-      <div class="container">
-        <div class="insta-section__layout">
-
-          <div class="insta-section__copy" data-reveal>
-            <div class="kicker">Instagram</div>
-            <h2 id="insta-heading" class="h2">Следите за&nbsp;процессом создания работ</h2>
-            <p class="lead">В нашем Instagram — закулисье мастерской: от&nbsp;расплавленного металла до&nbsp;готовой скульптуры. Каждая работа — история.</p>
-            <span class="insta-section__handle">
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              @shtolli_sculptor
-            </span>
-            <a href="https://www.instagram.com/shtolli_sculptor/" target="_blank" rel="noopener" class="btn btn--solid" data-magnetic>
-              Открыть Instagram&nbsp;→
-            </a>
-          </div>
-
-          <div class="phone-wrap" data-reveal data-reveal-delay="0.14">
-            <div class="phone-frame">
-              <div class="phone-frame__island" aria-hidden="true"></div>
-              <div class="phone-screen">
-                <!-- Реальный скриншот профиля @shtolli_sculptor (источник: img/инстаграмм скрин профиля.PNG) -->
-                <img class="phone-shot" src="assets/img/instagram-profile.webp"
-                     width="550" height="869" loading="lazy" decoding="async"
-                     alt="Профиль мастерской ШТОЛЛИ в Instagram: @shtolli_sculptor — 931 подписчик, скульптура и художественное литьё из бронзы и латуни">
-              </div><!-- /phone-screen -->
-            </div><!-- /phone-frame -->
-          </div><!-- /phone-wrap -->
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TESTIMONIALS ============ -->
-    <section class="testimonials-section" aria-labelledby="testimonials-heading">
-      <div class="container">
-        <div class="kicker">Отзывы клиентов</div>
-        <h2 id="testimonials-heading" class="h2">Что&nbsp;говорят те, кто уже заказывал у&nbsp;нас</h2>
-
-        <div class="testimonials-grid">
-          <article class="testimonial-card">
-            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testimonial-card__text">Заказывали бронзовый барельеф к&nbsp;юбилею. Сходство — поразительное, даже родственники не&nbsp;поверили, что работа сделана по&nbsp;фотографии. Делали 4&nbsp;недели, согласовывали 3D&#8209;модель&nbsp;— это очень удобно.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar" aria-hidden="true">М</div>
-              <div>
-                <div class="testimonial-card__name">Михаил К.</div>
-                <div class="testimonial-card__role">Частный заказ · Москва · 2025</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="testimonial-card">
-            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testimonial-card__text">Серия наградных табличек для конкурса — 24&nbsp;штуки, в&nbsp;сжатые сроки. Качество отливки&nbsp;— на&nbsp;уровне европейских мастерских. Сотрудничеством довольны, продолжим работу в&nbsp;следующем году.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar" aria-hidden="true">А</div>
-              <div>
-                <div class="testimonial-card__name">Анна П.</div>
-                <div class="testimonial-card__role">Оргкомитет «Новая волна» · 2021</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="testimonial-card">
-            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
-            <p class="testimonial-card__text">Заказывали большие весы для нашего рынка — это интерактивный арт-объект из&nbsp;чёрного металла, на&nbsp;который можно встать и&nbsp;взвеситься. Ребята всё придумали, собрали и&nbsp;смонтировали сами&nbsp;— без литья и&nbsp;шаблонов. Покупатели специально приходят посмотреть и&nbsp;сфотографироваться.</p>
-            <div class="testimonial-card__author">
-              <div class="testimonial-card__avatar" aria-hidden="true">В</div>
-              <div>
-                <div class="testimonial-card__name">Владимир С.</div>
-                <div class="testimonial-card__role">Адлерский Центральный рынок · 2024</div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA ============ -->
-    <section class="section cta-section" aria-labelledby="cta-heading">
-      <div class="container">
-        <div class="cta" data-reveal>
-          <span class="cta__ring cta__ring--1" data-parallax="0.06" aria-hidden="true"></span>
-          <span class="cta__ring cta__ring--2" data-parallax="0.1" aria-hidden="true"></span>
-          <div class="cta__copy">
-            <div class="cta__eyebrow">Хотите скульптуру?</div>
-            <h2 id="cta-heading" class="cta__title">Ответьте на&nbsp;4&nbsp;вопроса&nbsp;— подготовим расчёт</h2>
-          </div>
-          <a href="quiz.html" class="btn btn--bronze btn--xl cta__btn" data-magnetic>Оставить заявку&nbsp;→</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- ============ CONTACTS / FOOTER ============ -->
@@ -803,6 +433,7 @@
           <a href="https://t.me/shtolli_sculptor" target="_blank" rel="noopener" class="chip" data-magnetic>Telegram</a>
           <a href="https://wa.me/79384499311" target="_blank" rel="noopener" class="chip" data-magnetic>WhatsApp</a>
           <a href="https://litejnaja-masterskaja-shtolli.clients.site/" target="_blank" rel="noopener" class="chip chip--yandex" data-magnetic>Яндекс&nbsp;Бизнес</a>
+          <a href="https://shtolli.ru" rel="noopener" class="chip" data-magnetic>Основной сайт&nbsp;→</a>
         </div>
       </div>
 
@@ -844,15 +475,13 @@
     <figure class="lightbox__stage">
       <img class="lightbox__img" id="lightbox-img" src="" alt="" aria-hidden="true">
       <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
-      <a href="quiz.html" class="lightbox__cta">Заказать похожую работу&nbsp;→</a>
+      <a href="https://shtolli.ru/quiz.html" class="lightbox__cta">Заказать похожую работу&nbsp;→</a>
     </figure>
   </div>
 
   <!-- ============ FLOATING CTA (Telegram quick) ============ -->
   <a href="https://t.me/shtolli_sculptor" target="_blank" rel="noopener" class="float-cta" aria-label="Написать в Telegram">
-    <span class="float-cta__icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-    </span>
+    <span class="float-cta__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></span>
     <span class="float-cta__label">Telegram</span>
     <span class="float-cta__pulse" aria-hidden="true"></span>
   </a>
@@ -886,20 +515,13 @@
   </nav>
 
   <!-- ============ SCRIPTS ============ -->
-  <!-- Libraries (CDN). See docs/DEPLOYMENT.md for self-hosting / SRI. -->
-  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css" integrity="sha384-gvLq/iOMNnPchdosgVym5huSVkKipHCQaqSw2Eg0V52Mzmlf169ZOsXcNc2cNu8x" crossorigin="anonymous">
   <script defer src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js" integrity="sha384-iiCtod6ZId6zT42Bar9EFXNKZh8X4VliWYWFOuY3/t1AxCvLejXExXcbluoc57CJ" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous"></script>
-
-  <!-- App scripts (classic, ordered — work over file:// without a bundler) -->
   <script defer src="assets/js/leads-store.js"></script>
   <script defer src="assets/js/config.js"></script>
   <script defer src="assets/js/ui.js"></script>
   <script defer src="assets/js/motion.js"></script>
-  <script defer src="assets/js/slider.js"></script>
   <script defer src="assets/js/polish.js"></script>
-
 </body>
 </html>

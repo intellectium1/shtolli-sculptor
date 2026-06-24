@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /docs/
 
-Sitemap: https://shtolli.ru/sitemap.xml
+Sitemap: https://shtolli.art/sitemap.xml

@@ -19,3 +19,10 @@ node_modules/
 # Local env / secrets — never commit
 .env
 .env.*
+
+# Local deployment / ops scripts (contain server credentials — never commit)
+deploy.py
+sftp_deploy*.py
+sftp_ls*.py
+ftp_*.py
+upload_*.py
