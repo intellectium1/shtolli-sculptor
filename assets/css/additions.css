@@ -850,10 +850,11 @@
   color: var(--c-on-dark);
   border-radius: var(--radius-lg);
 }
-.article-cta__title {
+.article-cta .article-cta__title {
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 1rem + 1.2vw, 1.5rem);
   font-weight: 500;
+  margin-top: 0;
   margin-bottom: 0.875rem;
   color: var(--c-on-dark);
 }

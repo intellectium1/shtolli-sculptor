@@ -199,6 +199,12 @@ def main():
     dep = Deployer()
     print("Connected to", HOST)
     try:
+        if mode == "files":
+            domain = sys.argv[2] if len(sys.argv) > 2 else "ru"
+            target = "www/shtolli.ru" if domain == "ru" else "www/shtolli.art"
+            print("== files -> %s ==" % target)
+            for rel in sys.argv[3:]:
+                dep.put(os.path.join(LOCAL_ROOT, rel.replace("/", os.sep)), target + "/" + rel)
         if mode == "html":
             print("== HTML + icons only (both domains) ==")
             deploy_ru(dep, only_html=True)
