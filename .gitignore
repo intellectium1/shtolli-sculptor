@@ -26,3 +26,6 @@ sftp_deploy*.py
 sftp_ls*.py
 ftp_*.py
 upload_*.py
+
+# Real runtime config with secrets (lives ABOVE webroot on the server)
+shtolli-config.php
