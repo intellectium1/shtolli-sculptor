@@ -1,37 +1,35 @@
 /* ============================================================
-   ШТОЛЛИ — отправка заявок (Formspree)
+   ШТОЛЛИ — отправка заявок в админ-панель (PHP+MySQL backend)
 
-   Чтобы заявки из контактной формы и квиза приходили на e-mail
-   АВТОМАТИЧЕСКИ (без ручного шага):
-     1. Зарегистрируйте бесплатную форму на https://formspree.io
-        и укажите получателем shtolik@list.ru
-     2. Скопируйте её endpoint вида https://formspree.io/f/xxxxxxxx
-     3. Вставьте его в SHTOLLI_FORMSPREE ниже и задеплойте.
+   Контактная форма и квиз шлют заявку сюда; она попадает в общую
+   базу заявок (shtolli.ru/admin.html). Endpoint абсолютный, чтобы
+   формы со второго домена (shtolli.art) тоже доходили (CORS открыт
+   для обоих доменов на стороне lead.php).
 
-   Пока строка пустая — сайт работает в РУЧНОМ режиме
-   (WhatsApp / Telegram / почта), ничего не ломается.
-   Альтернатива Formspree — EmailJS: тогда замените тело
-   ShtolliSend на вызов emailjs.send(...). Интерфейс тот же.
+   ShtolliSend(payload) -> Promise<boolean>:
+     true  — заявка принята сервером,
+     false — ошибка сети/сервера (вызывающий код покажет ручной
+             способ: WhatsApp / Telegram / почта).
+   Никогда не бросает исключение.
    ============================================================ */
 (function () {
   'use strict';
 
-  window.SHTOLLI_FORMSPREE = ''; // <-- вставьте сюда https://formspree.io/f/XXXXXXXX
+  window.SHTOLLI_LEAD_API = 'https://shtolli.ru/admin/api/lead.php';
 
-  /* Отправляет заявку. Возвращает Promise<boolean>:
-     true  — успешно отправлено на сервер,
-     false — не настроено или ошибка сети (вызывающий код
-             покажет ручной способ: WhatsApp / Telegram / почта).
-     Никогда не бросает исключение. */
   window.ShtolliSend = function (payload) {
-    var url = (window.SHTOLLI_FORMSPREE || '').trim();
+    var url = (window.SHTOLLI_LEAD_API || '').trim();
     if (!url) return Promise.resolve(false);
     try {
       return fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (r) { return r.ok; }).catch(function () { return false; });
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload || {})
+      }).then(function (r) {
+        if (!r.ok) return false;
+        return r.json().then(function (j) { return !!(j && j.ok); })
+                       .catch(function () { return true; });
+      }).catch(function () { return false; });
     } catch (e) {
       return Promise.resolve(false);
     }
